@@ -1,8 +1,13 @@
+import { Switch, Route } from 'react-router-dom';
+import HomePage from './Pages/HomePage';
+import WishlistPage from './Pages/WishlistPage';
+
 function App() {
   return (
-    <div className="App">
-      Bröllopshemsida
-    </div>
+    <Switch>
+      <Route path="/wishlist" component={WishlistPage} />
+      <Route path="/" component={HomePage} />
+    </Switch>
   );
 }
 
