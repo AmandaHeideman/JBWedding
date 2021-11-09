@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+
+$light: #F3E5F3;
+$lightAcc: #ACA8F3;
+$main: #4758CE;
+$darkAcc: #161457;
+$dark: #0F0F17;
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.body{
+  background-color: $light;
+  height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6{
+  font-family: 'Tangerine', cursive;
+}
+
+.navbar{
+  background-color: $darkAcc;
+  color: $light;
+  display: flex;
+  justify-content:space-evenly;
+  a{
+    color: $light;
+    &:hover, &:focus{
+      color: $lightAcc;
+    }
+  }
+
+}
