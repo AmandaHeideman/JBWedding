@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../context/userContext';
 
 const Navigation = () => {
+
+  const { isLoggedin } = useContext(UserContext);
+
   return (
     <nav className="navbar navbar-expand-lg text-center">
       <a className="navbar-brand" href="/">Home</a>
@@ -12,9 +16,11 @@ const Navigation = () => {
           <li className="nav-item">
             <a className="nav-link" href="/wishlist">Wishlist</a>
           </li>
+          {!isLoggedin && 
           <li className="nav-item">
             <a className="nav-link" href="/login">Log in</a>
           </li>
+          }
         </ul>
       </div>
     </nav>

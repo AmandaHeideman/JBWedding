@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Axios from 'axios';
+import { UserContext } from '../context/userContext';
 
 const LoginPage = () => {
+
+  const { setIsLoggedin } = useContext(UserContext);
 
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ loginUsername, setLoginUsername ] = useState();
   const [ errorMsg, setErrorMsg ] = useState();
   
-  const login= () => {
+  const login = () => {
     Axios.post("http://localhost:5000/users/login", {
       username: username,
       password: password,
     }).then((res) => { 
       setLoginUsername(res.data.fullName);
+      setIsLoggedin(true);
     }).catch((err) => {
       console.log(err.message);
       setErrorMsg("Fel användarnamn eller lösenord");
