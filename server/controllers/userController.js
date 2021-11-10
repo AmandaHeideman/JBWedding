@@ -12,19 +12,20 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-const signInUser = (req, res, next) => {
+const loginUser = async (req, res, next) => {
   const { email, password } = req.body;
+  const user = await UserModel.findOne({ email });
 
   UserModel.findOne({ email }).exec((err, user) => {
     if (user) {
       bcrypt.compare(password, user.password, (error, match) => {
-        if (error) res.status(500).json({ msg: error });
+        if (error) res.status(500).json({ message: error });
         else if (match)
-          res.status(200).json({ token: generateToken(user._id) });
-        else res.status(403).json({ msg: "wrong email or password" });
+          res.status(200).send(user);
+        else res.status(403).json({ message: "Fel användarnamn eller lösenord" });
       });
     } else {
-      res.status(403).json({ msg: "wrong email or password" });
+      res.status(403).json({ message: "Fel användarnamn eller lösenord" });
     }
   });
 };
@@ -57,4 +58,4 @@ const newUser = (req, res, next) => {
   });
 }
 
-module.exports = { getAllUsers, signInUser, newUser };
+module.exports = { getAllUsers, loginUser, newUser };
