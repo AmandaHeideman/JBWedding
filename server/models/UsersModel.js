@@ -7,7 +7,7 @@ const userSchema = new Schema({
   admin: { type: Boolean, required: true },
   attending: { type: Boolean },
   alcohol: { type: Boolean },
-  dietaryRestiction: { type: String },
+  diet: { type: String },
   performing: { type: Boolean }
 });
 

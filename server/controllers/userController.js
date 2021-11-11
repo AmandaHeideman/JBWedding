@@ -31,10 +31,16 @@ const loginUser = async (req, res, next) => {
 };
 
 const register = (req, res, next) => {
-  const { fullName, attending } = req.body;
+  const { fullName, attending, alcohol, diet, performing } = req.body;
   try {
     UserModel.findOneAndUpdate(
-      { fullName: fullName }, { $set: { attending: attending } }, { upsert: true }
+      { fullName: fullName }, 
+      { $set: { 
+        attending: attending, 
+        alcohol: alcohol,
+        diet: diet, 
+        performing: performing 
+      } }
     )
       .catch((err) => res.status(500).json({ msg: err.message }));
   } catch (err) {
