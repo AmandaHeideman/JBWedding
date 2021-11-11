@@ -4,9 +4,11 @@ import Axios from 'axios';
 const RegistrationForm = () => {
 
   const [ attending, setAttending ] = useState();
+  const user = localStorage.getItem('user');
 
   const onSubmit = () => {
     Axios.post("http://localhost:5000/users/registration", {
+      fullName: user,
       attending: attending
     })
   }
