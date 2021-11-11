@@ -13,10 +13,10 @@ const getAllUsers = async (req, res) => {
 };
 
 const loginUser = async (req, res, next) => {
-  const { email, password } = req.body;
-  const user = await UserModel.findOne({ email });
+  const { fullName, password } = req.body;
+  const user = await UserModel.findOne({ fullName });
 
-  UserModel.findOne({ email }).exec((err, user) => {
+  UserModel.findOne({ fullName }).exec((err, user) => {
     if (user) {
       bcrypt.compare(password, user.password, (error, match) => {
         if (error) res.status(500).json({ message: error });
@@ -29,6 +29,20 @@ const loginUser = async (req, res, next) => {
     }
   });
 };
+
+const register = (req, res, next) => {
+  const { fullName, attending } = req.body;
+  console.log(attending);
+  try {
+    UserModel.findOneAndUpdate(
+      fullName, { attending: attending }
+    )
+      .catch((err) => res.status(500).json({ msg: err.message }));
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+};
+
 
 const newUser = (req, res, next) => {
   let fullName = "AmandaHeideman";
@@ -58,4 +72,4 @@ const newUser = (req, res, next) => {
   });
 }
 
-module.exports = { getAllUsers, loginUser, newUser };
+module.exports = { getAllUsers, loginUser, newUser, register };

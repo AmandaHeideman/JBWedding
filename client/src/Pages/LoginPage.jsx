@@ -1,23 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Axios from 'axios';
-import { UserContext } from '../context/userContext';
 
 const LoginPage = () => {
 
-  const { setIsLoggedin } = useContext(UserContext);
-
-  const [ username, setUsername ] = useState("");
+  const [ fullName, setFullName ] = useState("");
   const [ password, setPassword ] = useState("");
-  const [ loginUsername, setLoginUsername ] = useState();
   const [ errorMsg, setErrorMsg ] = useState();
-  
+
+  let user = localStorage.getItem('user');
+
   const login = () => {
     Axios.post("http://localhost:5000/users/login", {
-      username: username,
+      fullName: fullName,
       password: password,
     }).then((res) => { 
-      setLoginUsername(res.data.fullName);
-      setIsLoggedin(true);
+      localStorage.setItem('user', `${res.data.fullName}`);
+      window.location.reload();
     }).catch((err) => {
       console.log(err.message);
       setErrorMsg("Fel användarnamn eller lösenord");
@@ -30,7 +28,7 @@ const LoginPage = () => {
       <input 
         type="text" 
         onChange={(e) =>{
-          setUsername(e.target.value);
+          setFullName(e.target.value);
         }} 
       />
       <label>Lösenord</label>
@@ -41,8 +39,8 @@ const LoginPage = () => {
         }}
       />
       <button onClick={login}>Logga in</button>
-      {loginUsername ? 
-        <p>Välkommen, {loginUsername}!</p>
+      {user ? 
+        <p>Välkommen, {user}!</p>
       : <p>{errorMsg}</p>}
     </div>
   )
