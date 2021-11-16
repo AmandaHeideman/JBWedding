@@ -14,8 +14,8 @@ const LoginPage = () => {
       fullName: fullName,
       password: password,
     }).then((res) => { 
-      localStorage.setItem('user', `${res.data.fullName}`);
-      window.location.reload();
+      localStorage.setItem('token', res.data.token);
+      window.location.assign('/');
     }).catch((err) => {
       console.log(err.message);
       setErrorMsg("Fel användarnamn eller lösenord");

@@ -13,7 +13,7 @@ function App() {
       <div className="container">
         <Switch>
           <Route path="/login" component={LoginPage} />
-          <Route path="/registration" component={RegistrationPage} />
+          <Route path="/registration/:id" component={RegistrationPage} />
           <Route path="/wishlist" component={WishlistPage} />
           <Route path="/" component={HomePage} />
         </Switch>

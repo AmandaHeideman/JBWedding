@@ -2,7 +2,7 @@ import React from 'react';
 
 const Navigation = () => {
 
-  const user = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
 
   return (
     <nav className="navbar navbar-expand-md text-center">
@@ -15,15 +15,15 @@ const Navigation = () => {
           <li className="nav-item">
             <a className="nav-link" href="/wishlist">Önskelista</a>
           </li>
-          {!user && 
+          {!token && 
           <li className="nav-item">
             <a className="nav-link" href="/login">Logga in</a>
           </li>
           }
 
-          {user &&
+          {token &&
             <li className="nav-item">
-              <a className="nav-link" href="/registration">Anmälan</a>
+              <a className="nav-link" href={`/registration/${token}`}>Anmälan</a>
             </li>
           }
         </ul>
