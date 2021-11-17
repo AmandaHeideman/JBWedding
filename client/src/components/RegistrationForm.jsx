@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 const RegistrationForm = () => {
 
-  const user = localStorage.getItem('user');
+  const token = localStorage.getItem('token');
   const [ attending, setAttending ] = useState();
   const [ alcohol, setAlcohol ] = useState();
   const [ diet, setDiet ] = useState();
@@ -11,11 +11,16 @@ const RegistrationForm = () => {
 
   const onSubmit = () => {
     Axios.post("http://localhost:5000/users/registration", {
-      fullName: user,
       attending: attending,
       alcohol: alcohol,
       diet: diet,
       performing: performing
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token
+      }
     })
   }
 

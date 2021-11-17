@@ -34,11 +34,14 @@ const loginUser = async (req, res, next) => {
 };
 
 const register = (req, res, next) => {
-  const { fullName, attending, alcohol, diet, performing } = req.body;
+  const { attending, alcohol, diet, performing } = req.body;
+  const token = req.headers.authorization;
   
   try {
+    const user = jwt.verify(token, secretToken);
+    const _id = user.id;
     UserModel.findOneAndUpdate(
-      { fullName: fullName }, 
+      { _id }, 
       { $set: { 
         attending: attending, 
         alcohol: alcohol,
@@ -60,7 +63,7 @@ const getRegistration = async (req, res) => {
     const _id = user.id;
 
     const getUser = await UserModel.findOne({ _id });
-    res.json({ fullName: getUser.fullName });
+    res.json({ user: getUser });
   } catch(err){
     console.log(err);
     res.json({ status: 'error' })
@@ -69,23 +72,15 @@ const getRegistration = async (req, res) => {
 
 
 const newUser = (req, res, next) => {
-  let fullName = "AmandaHeideman";
+  let fullName = "test2";
   let password = "12345";
-  let admin = true;
-  let attending = true;
-  let alcohol = false;
-  let dietaryRestriction = "veg";
-  let performing = false;
+  let admin = false;
   bcrypt.hash(password, salt, (error, hash) => {
     if (error) res.status(500);
     const newUser = new UserModel({
       fullName,
       password: hash,
-      admin,
-      attending,
-      alcohol,
-      dietaryRestriction,
-      performing,
+      admin
     });
     newUser
       .save()
