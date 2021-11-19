@@ -4,8 +4,10 @@ import HomePage from './Pages/HomePage';
 import WishlistPage from './Pages/WishlistPage';
 import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
+import EditRegistrationPage from './Pages/EditRegistrationPage';
 
 function App() {
+  
 
   return (
     <div className="body">
@@ -13,7 +15,8 @@ function App() {
       <div className="container">
         <Switch>
           <Route path="/login" component={LoginPage} />
-          <Route path="/registration/:id" component={RegistrationPage} />
+          <Route path="/registration/edit" component={EditRegistrationPage} />
+          <Route path="/registration" component={RegistrationPage} />
           <Route path="/wishlist" component={WishlistPage} />
           <Route path="/" component={HomePage} />
         </Switch>

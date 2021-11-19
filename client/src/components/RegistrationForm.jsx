@@ -1,20 +1,28 @@
 import React, { useState } from 'react';
 import Axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
-const RegistrationForm = () => {
+const RegistrationForm = (props) => {
 
+  const history = useHistory();
   const token = localStorage.getItem('token');
-  const [ attending, setAttending ] = useState();
-  const [ alcohol, setAlcohol ] = useState();
-  const [ diet, setDiet ] = useState();
-  const [ performing, setPerforming ] = useState();
+  const [ attending, setAttending ] = useState(props.attending);
+  const [ alcohol, setAlcohol ] = useState(props.alcohol);
+  const [ diet, setDiet ] = useState(props.diet);
+  const [ performing, setPerforming ] = useState(props.performing);
+  const [ email, setEmail ] = useState(props.email);
+
+  /* 
+  * Send answers to server
+  */
 
   const onSubmit = () => {
     Axios.post("http://localhost:5000/users/registration", {
       attending: attending,
       alcohol: alcohol,
       diet: diet,
-      performing: performing
+      performing: performing,
+      email: email
     },
     {
       headers: {
@@ -22,21 +30,40 @@ const RegistrationForm = () => {
         'Authorization': token
       }
     })
+    history.push('/registration')
   }
 
+
+  /* 
+  * Handling changes in form
+  */
+
   const handleAttending = (e) => {
-    setAttending(e.target.value);
+    setAttending(convertToBool(e.target.value));
   }
 
   const handleAlcohol = (e) => {
-    setAlcohol(e.target.value);
+    setAlcohol(convertToBool(e.target.value));
   }
 
   const handleDiet = (e) => {
     setDiet(e.target.value);
   }
   const handlePerforming = (e) => {
-    setPerforming(e.target.value);
+    setPerforming(convertToBool(e.target.value));
+  }
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+  }
+
+  function convertToBool (value){
+    let bool;
+    if(value === "true"){
+      bool = true;
+    } else {
+      bool = false;
+    }
+    return bool;
   }
 
   return (
@@ -44,59 +71,66 @@ const RegistrationForm = () => {
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Kommer du på bröllopet?</label>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" value="true" onChange={handleAttending} />
+          <div className=" radio">
+            <input className="form-check-input" name="attending" type="radio" value={true} checked={attending === true} onChange={handleAttending} />
             <label className="form-check-label">
               Jag kommer
             </label>
           </div>
-          <div className="form-check">
-            <input className="form-check-input" type="radio" value="false" onChange={handleAttending} />
+          <div className="radio">
+            <input className="form-check-input" name="attending" type="radio" value={false} checked={attending === false} onChange={handleAttending} />
             <label className="form-check-label">
               Jag kommer inte
             </label>
           </div>
         </div>
-
+         
         <div className="form-group">
-          <label>Vill du ha alkoholfri eller alkoholhaltig dryck?</label>
+          <label>Vill du ha alkoholhaltig eller alkoholfri dryck?</label>
           <div className="form-check">
-            <input className="form-check-input" type="radio" value="false" onChange={handleAlcohol} />
+            <input className="form-check-input" name="alcohol" type="radio" value={true} checked={alcohol === true} onChange={handleAlcohol} />
             <label className="form-check-label">
-              Alkoholfri dryck
+              Alkoholhaltig dryck
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio" value="true" onChange={handleAlcohol} />
+            <input className="form-check-input" name="alcohol" type="radio" value={false} checked={alcohol === false} onChange={handleAlcohol} />
             <label className="form-check-label">
-              Alkoholhaltig dryck
+              Alkoholfri dryck
             </label>
           </div>
         </div>
 
         <div className="form-group">
           <label>Har du några allergier/matpreferenser?</label>
-          <textarea class="form-control"  rows="3" onChange={handleDiet}></textarea>
+          <textarea class="form-control"  rows="3" onChange={handleDiet} defaultValue={diet}></textarea>
         </div>
 
         <div className="form-group">
           <label>Vill du göra något uppträdande eller hålla tal under middagen?</label>
           <div className="form-check">
-            <input className="form-check-input" type="radio" value="true" onChange={handlePerforming} />
+            <input className="form-check-input" name="performing" type="radio" value={true} checked={performing === true} onChange={handlePerforming} />
             <label className="form-check-label">
               Ja
             </label>
           </div>
           <div className="form-check">
-            <input className="form-check-input" type="radio" value="false" onChange={handlePerforming} />
+            <input className="form-check-input" name="performing" type="radio" value={false} checked={performing === false} onChange={handlePerforming} />
             <label className="form-check-label">
               Nej
             </label>
           </div>
+          {performing===true && 
+            <div className="form-group">
+              <label>Ange email så kontaktar toastmastern dig</label>
+              <input type="email" class="form-control"  rows="3" defaultValue={email} onChange={handleEmail} />
+            </div>
+          }
         </div>
         
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
+
     </div>
   )
 }

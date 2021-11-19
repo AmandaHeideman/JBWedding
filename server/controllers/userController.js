@@ -6,9 +6,12 @@ const salt = Number(process.env.SALT);
 const secretToken = process.env.SECRET_TOKEN;
 
 const getAllUsers = async (req, res) => {
+  const token = req.headers.authorization;
   try {
-    const allUsers = await UserModel.find();
-    res.status(200).json(allUsers);
+    const jwtUser = jwt.verify(token, secretToken);
+    const _id = jwtUser.id;
+    const user = await UserModel.findOne({ _id });
+    res.status(200).json(user);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
@@ -34,8 +37,9 @@ const loginUser = async (req, res, next) => {
 };
 
 const register = (req, res, next) => {
-  const { attending, alcohol, diet, performing } = req.body;
+  const { attending, alcohol, diet, performing, email } = req.body;
   const token = req.headers.authorization;
+
   
   try {
     const user = jwt.verify(token, secretToken);
@@ -46,9 +50,10 @@ const register = (req, res, next) => {
         attending: attending, 
         alcohol: alcohol,
         diet: diet, 
-        performing: performing 
+        performing: performing, 
+        email: email 
       } }
-    )
+      )
       .catch((err) => res.status(500).json({ msg: err.message }));
   } catch (err) {
     res.status(404).json({ message: err.message });

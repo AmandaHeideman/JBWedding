@@ -23,7 +23,7 @@ const Navigation = () => {
 
           {token &&
             <li className="nav-item">
-              <a className="nav-link" href={`/registration/${token}`}>Anmälan</a>
+              <a className="nav-link" href="/registration">Anmälan</a>
             </li>
           }
         </ul>

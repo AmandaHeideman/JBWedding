@@ -8,7 +8,8 @@ const userSchema = new Schema({
   attending: { type: Boolean },
   alcohol: { type: Boolean },
   diet: { type: String },
-  performing: { type: Boolean }
+  performing: { type: Boolean },
+  email: { type: String }
 });
 
 const User = mongoose.model('Users', userSchema);

@@ -10,7 +10,7 @@ const getAllGifts = async (req, res) => {
 };
 
 const newGift = (req, res, next) => {
-  let title = "Våffeljärn";
+  let title = "Elgrill";
   let purchased = 0;
   const newGift = new GiftModel({
     title, 
