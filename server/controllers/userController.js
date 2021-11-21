@@ -1,15 +1,14 @@
 const UserModel = require("../models/UsersModel");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { getUserId } = require("../auth");
 
 const salt = Number(process.env.SALT);
 const secretToken = process.env.SECRET_TOKEN;
 
-const getAllUsers = async (req, res) => {
-  const token = req.headers.authorization;
+const getUser = async (req, res) => {
+  const _id = getUserId(req);
   try {
-    const jwtUser = jwt.verify(token, secretToken);
-    const _id = jwtUser.id;
     const user = await UserModel.findOne({ _id });
     res.status(200).json(user);
   } catch (err) {
@@ -38,12 +37,9 @@ const loginUser = async (req, res, next) => {
 
 const register = (req, res, next) => {
   const { attending, alcohol, diet, performing, email } = req.body;
-  const token = req.headers.authorization;
-
+  const _id = getUserId(req);
   
   try {
-    const user = jwt.verify(token, secretToken);
-    const _id = user.id;
     UserModel.findOneAndUpdate(
       { _id }, 
       { $set: { 
@@ -54,27 +50,26 @@ const register = (req, res, next) => {
         email: email 
       } }
       )
-      .catch((err) => res.status(500).json({ msg: err.message }));
+      .catch((err) => res.status(500).json({ message: err.message }));
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };
 
 const getRegistration = async (req, res) => {
-  const token = req.headers.authorization;
-
-  try{
-    const user = jwt.verify(token, secretToken);
-    const _id = user.id;
-
-    const getUser = await UserModel.findOne({ _id });
-    res.json({ user: getUser });
-  } catch(err){
-    console.log(err);
-    res.json({ status: 'error' })
+  
+  const _id = getUserId(req);
+  if(_id.status !== 400) {
+    try{
+      const getUser = await UserModel.findOne({ _id });
+      res.json({ user: getUser });
+    } catch(err){
+      res.json({ message: err.message })
+    }
+  } else {
+    res.status(400).json({ message: "Not logged in"});
   }
 }
-
 
 const newUser = (req, res, next) => {
   let fullName = "test2";
@@ -96,4 +91,4 @@ const newUser = (req, res, next) => {
   });
 }
 
-module.exports = { getAllUsers, loginUser, newUser, register, getRegistration };
+module.exports = { getUser, loginUser, newUser, register, getRegistration };

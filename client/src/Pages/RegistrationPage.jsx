@@ -12,6 +12,7 @@ const RegistrationPage = () => {
   const [diet, setDiet] = useState();
   const [performing, setPerforming] = useState();
   const [email, setEmail] = useState();
+  const [err, setErr] = useState();
 
   async function getRegistration() {
     await axios
@@ -60,6 +61,7 @@ const RegistrationPage = () => {
       })
       .catch((err) => {
         console.log(err.message);
+        setErr("Du behöver logga in för att se den här sidan");
       });
   }
 
@@ -103,6 +105,7 @@ const RegistrationPage = () => {
           )}
         </>
       )}
+      {err && <p>{err}</p>}
     </div>
   );
 };

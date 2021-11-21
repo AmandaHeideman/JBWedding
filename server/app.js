@@ -10,6 +10,7 @@ require('dotenv').config();
 const indexRouter = require('./routes/indexRouter');
 const usersRouter = require('./routes/usersRouter');
 const giftRouter = require('./routes/giftRouter');
+const adminRouter = require('./routes/adminRouter');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -31,6 +32,7 @@ mongoose
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/wishlist', giftRouter);
+app.use('/admin', adminRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);

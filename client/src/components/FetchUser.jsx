@@ -11,6 +11,23 @@ class FetchUser {
           'Authorization': token
         }
       }))
+    } else {
+      return "Not logged in"
+    }
+  }
+
+  static GetAdmin() {
+    const token = localStorage.getItem('token');
+
+    if(token){
+      return (axios.get("http://localhost:5000/admin/", {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': token
+        }
+      }))
+    } else {
+      return "Not logged in"
     }
   }
 }

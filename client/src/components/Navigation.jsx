@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import FetchUser from './FetchUser';
 
 const Navigation = () => {
 
+  const [admin, setAdmin] = useState();
+
   const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if(token){
+    FetchUser.GetAdmin()
+    .then((res) => setAdmin(res.data))
+    .catch((err) => console.log(err.message))
+    }
+  }, [])
 
   return (
     <nav className="navbar navbar-expand-md text-center">
@@ -25,6 +36,12 @@ const Navigation = () => {
             <li className="nav-item">
               <a className="nav-link" href="/registration">Anmälan</a>
             </li>
+          }
+
+          {admin===true && 
+          <li className="nav-item">
+            <a className="nav-link" href="/admin">Admin</a>
+          </li>
           }
         </ul>
       </div>
