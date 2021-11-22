@@ -16,6 +16,10 @@ class FetchUser {
     }
   }
 
+  static GetAllUsers() {
+    return (axios.get("http://localhost:5000/users/guests"))
+  }
+
   static GetAdmin() {
     const token = localStorage.getItem('token');
 

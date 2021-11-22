@@ -6,6 +6,7 @@ import LoginPage from './Pages/LoginPage';
 import RegistrationPage from './Pages/RegistrationPage';
 import EditRegistrationPage from './Pages/EditRegistrationPage';
 import AdminPage from './Pages/AdminPage';
+import GuestListPage from './Pages/GuestListPage';
 
 function App() {
   
@@ -15,6 +16,7 @@ function App() {
       <Navigation />
       <div className="container">
         <Switch>
+          <Route path="/admin/guestlist" component={GuestListPage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/registration/edit" component={EditRegistrationPage} />

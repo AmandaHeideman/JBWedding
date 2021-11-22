@@ -16,6 +16,15 @@ const getUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await UserModel.find();
+    res.status(200).json(users);
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
+
 const loginUser = async (req, res, next) => {
   const { fullName, password } = req.body;
   
@@ -91,4 +100,4 @@ const newUser = (req, res, next) => {
   });
 }
 
-module.exports = { getUser, loginUser, newUser, register, getRegistration };
+module.exports = { getUser, getAllUsers, loginUser, newUser, register, getRegistration };

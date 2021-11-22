@@ -31,4 +31,12 @@ h1, h2, h3, h4, h5, h6 {
 .navbar a:hover, .navbar a:focus {
   color: #ACA8F3;
 }
+
+.navbar .dropdown-item {
+  color: #0F0F17;
+}
+
+.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+  color: #161457;
+}
 /*# sourceMappingURL=style.css.map */
