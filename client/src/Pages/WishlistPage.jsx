@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import FetchUser from '../components/FetchUser';
 
 const url = axios.create({
   baseURL: process.env.API_KEY || 'http://localhost:5000'
@@ -12,6 +13,12 @@ const WishlistPage = () => {
 
   const [wishlist, setWishlist] = useState([]);
   const [checked, setChecked] = useState();
+  const [newGift, setNewGift] = useState();
+  const [guestGifts, setGuestGifts] = useState();
+
+  const [ user, setUser ] = useState();
+
+ 
 
   function getAllGifts() {
     url.get('/wishlist')
@@ -31,52 +38,108 @@ const WishlistPage = () => {
       })
   }
 
+  function getGuestGifts(){
+    axios.get('http://localhost:5000/wishlist/guestgifts')
+    .then((res) => setGuestGifts(res.data))
+  }
+
   useEffect(() => {
     getAllGifts()
+    getGuestGifts()
+    if(token){
+      FetchUser.GetUser()
+      .then((res) => setUser(res.data))
+    }
   }, []);
-  
+
   const onCheck = (e) => {
     const updatedCheckedState = checked.map((bool, index) =>
       index == e.target.value ? !bool : bool
     );
-    console.log(updatedCheckedState);
     setChecked(updatedCheckedState);
-  }
 
-  const onSave = () => {
+    const updatedItem = wishlist[e.target.value].title;
+    const purchased = e.target.checked
     axios.post(
       "http://localhost:5000/wishlist",
       {
-        purchased: checked
+        title: updatedItem,
+        purchased: purchased
+      },
+      {
+        headers: {
+          Authorization: token
+        }
       }
     ).then(console.log("updated"))
+  }
+
+  const handleGift = (e) => {
+    setNewGift(e.target.value)
+  }
+  
+  const submitGift = (e) => {
+    e.preventDefault();
+    axios.post(
+      "http://localhost:5000/wishlist/add",
+      {
+        title: newGift
+      }
+    ).then(() => {
+
+      console.log("new gift added");
+      window.location.reload();
+    }
+    )
   };
   
 
   return (
     <div>
-      Wishlist
+      <h1>Wishlist</h1>
       {wishlist ? 
       <div>
-      {token && checked ? 
+      {user && checked ? 
       (<div>
         {wishlist.map((value, key)=> {
           return (
           <>
             <p>{value.title}
-            <input type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
+            {value.nonPurchasable !== true && 
+              <>
+              {(value.purchased == true && value.boughtBy != user._id) ? 
+              <h6> Köpt</h6>
+              :
+              <input type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
+              }
+              </>
+            }
             </p>
           </>
           )
         })}
-        <button className="btn btn-primary" onClick={onSave}>
-          Spara
-        </button>
       </div>)
       :
       wishlist.map((value)=> {
         return (<p>{value.title} </p>)
       })
+    }
+    {user &&
+      <div>
+        <h2>Har du köpt något annat?</h2>
+        <form onSubmit={submitGift}>
+          <input type="text" onChange={handleGift} />
+          <button type="submit" className="btn btn-primary"> Submit </button>
+        </form>
+        <h2>Andra har köpt</h2>
+        {guestGifts ?
+          guestGifts.map((value) => {
+            return <span>{value.title}, </span>
+          })
+        :
+        <p>Loading</p>  
+        }
+      </div>
     }
     </div>
     :

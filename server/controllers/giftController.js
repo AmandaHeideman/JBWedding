@@ -1,4 +1,6 @@
-const GiftModel = require("../models/GiftsModel");
+const GiftModel = require('../models/GiftsModel');
+const GuestGiftModel = require('../models/GuestGiftsModel');
+const { getUserId } = require("../auth");
 
 const getAllGifts = async (req, res) => {
   try {
@@ -10,11 +12,13 @@ const getAllGifts = async (req, res) => {
 };
 
 const newGift = (req, res, next) => {
-  let title = "Elgrill";
+  let title = "test";
   let purchased = false;
+  let nonPurchasable = false;
   const newGift = new GiftModel({
     title, 
-    purchased
+    purchased,
+    nonPurchasable
   });
   newGift
     .save()
@@ -24,23 +28,45 @@ const newGift = (req, res, next) => {
     .then(res.json({ Added: newGift.title }));
 }
 
-const updateWishlist = async (req, res, next) => {
-  const { purchased } = req.body;
-  try {
-    const allGifts = await GiftModel.find();
-    allGifts.map((gift, index) => {
-      title=gift.title
-      GiftModel.findOneAndUpdate(
-        { title }, 
-        { $set: { 
-          purchased: purchased[index]
-        } }
-        )
-        .catch((err) => res.status(500).json({ message: err.message }));
+const newGuestGift = (req, res, next) => {
+  const { title } = req.body;
+  const newGift = new GuestGiftModel({
+    title
+  });
+  newGift
+    .save()
+    .catch((err) => {
+      res.status(400).json({ msg: err.message });
     })
+    .then(res.json({ Added: newGift.title }));
+}
+
+const getGuestGifts = async (req, res) => {
+  try {
+    const allGuestGifts = await GuestGiftModel.find();
+    res.status(200).json(allGuestGifts);
   } catch (err) {
     res.status(404).json({ message: err.message });
   }
 }
 
-module.exports = { getAllGifts, newGift, updateWishlist };
+const updateWishlist = async (req, res, next) => {
+  const { title, purchased } = req.body;
+  const userId = getUserId(req);
+  console.log("title: ", title, " purchased: ", purchased);
+  try {
+      GiftModel.findOneAndUpdate(
+        { title }, 
+        { $set: { 
+          purchased: purchased,
+          boughtBy: userId
+        } }
+        )
+        .catch((err) => res.status(500).json({ message: err.message }));
+    
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
+
+module.exports = { getAllGifts, newGift, updateWishlist, newGuestGift, getGuestGifts };
