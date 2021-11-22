@@ -8,6 +8,8 @@ const url = axios.create({
 
 const WishlistPage = () => {
 
+  const token = localStorage.getItem('token');
+
   const [wishlist, setWishlist] = useState([]);
   const [checked, setChecked] = useState();
 
@@ -15,10 +17,15 @@ const WishlistPage = () => {
     url.get('/wishlist')
       .then(response => {
         setWishlist(response.data)
+        let purchasedArray = [];
+        for(let i=0; i<response.data.length; i++) {
+          purchasedArray.push(response.data[i].purchased)
+        }
+        setChecked(purchasedArray)
       })
-      .then((res => {
+      /* .then((res => {
         setChecked(new Array(wishlist.length).fill(false));
-      }))
+      })) */
       .catch((error) => {
         console.log(error);
       })
@@ -49,18 +56,33 @@ const WishlistPage = () => {
   return (
     <div>
       Wishlist
-      {wishlist.map((value, key)=> {
-        return (
-        <>
-          <p>{value.title}
-          <input type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
-          </p>
-        </>
-        )
-      })}
-      <button className="btn btn-primary" onClick={onSave}>
-        Spara
-      </button>
+      {wishlist ? 
+      <div>
+      {token && checked ? 
+      (<div>
+        {wishlist.map((value, key)=> {
+          return (
+          <>
+            <p>{value.title}
+            <input type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
+            </p>
+          </>
+          )
+        })}
+        <button className="btn btn-primary" onClick={onSave}>
+          Spara
+        </button>
+      </div>)
+      :
+      wishlist.map((value)=> {
+        return (<p>{value.title} </p>)
+      })
+    }
+    </div>
+    :
+    <h1>Loading</h1>
+  }
+
     </div>
   )
 }
