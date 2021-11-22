@@ -23,25 +23,35 @@ const LoginPage = () => {
   };
 
   return (
-    <div>
-      <label>Namn</label>
+    <div className="loginpage">
+      <h1 className="mt-4">Logga in</h1>
+    <form className="login p-3">
+      <div className="form-group p-3">
+
+      <label for="name">Namn</label>
+      <br />
       <input 
+        id="name"
         type="text" 
         onChange={(e) =>{
           setFullName(e.target.value);
         }} 
-      />
-      <label>Lösenord</label>
+        />
+      </div>
+      <div className="form-group p-3">
+
+      <label for="password">Lösenord</label>
+      <br />
       <input
+        id="password"
         type="password"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
-      />
-      <button onClick={login}>Logga in</button>
-      {user ? 
-        <p>Välkommen, {user}!</p>
-      : <p>{errorMsg}</p>}
+        />
+        </div>
+      <button className="button m-3" onClick={login}>Logga in</button>
+    </form>
     </div>
   )
 }

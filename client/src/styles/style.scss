@@ -25,6 +25,14 @@ h1, h2, h3, h4, h5, h6{
   font-family: 'Tangerine', cursive;
 }
 
+.button{
+  background-color: $lightAcc; 
+  color: $darkAcc;
+  border: none;
+  border-radius: 10px;
+  padding: 8px;
+}
+
 .navbar{
   background-color: $darkAcc;
   color: $light;
@@ -61,6 +69,25 @@ h1, h2, h3, h4, h5, h6{
     }
     .countdown{
       font-size: 3rem;
+    }
+  }
+}
+
+.loginpage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1{
+    font-size: 4rem;
+  }
+  .login{
+    background-color: $main;
+    color: $light;
+    width: fit-content;
+    border-radius: 20px;
+    input{
+      border: none;
     }
   }
 }
