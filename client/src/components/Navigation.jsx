@@ -15,7 +15,7 @@ const Navigation = () => {
   }, []);
 
   return (
-    <nav className="navbar navbar-expand-md text-center">
+    <nav className="navbar navbar-expand-md text-center p-2">
       <a className="navbar-brand" href="/">
         Home
       </a>

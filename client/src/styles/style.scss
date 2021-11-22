@@ -12,8 +12,13 @@ $dark: #0F0F17;
 }
 
 .body{
-  background-color: $light;
   height: 100vh;
+  
+  background-image: url("./images/bg2.jpg");
+  
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(243, 229, 243, 0.5);
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -38,4 +43,24 @@ h1, h2, h3, h4, h5, h6{
     }
   }
 
+}
+
+.homepage{
+  height: 80vh;
+  color: $darkAcc;
+  h1{
+    font-size: 7rem;
+  }
+  .countdownContainer{
+    background-color: $main;
+    color: $light;
+    width: 30%;
+    border-radius: 100px;
+    h4{
+      font-size: 3rem;
+    }
+    .countdown{
+      font-size: 3rem;
+    }
+  }
 }

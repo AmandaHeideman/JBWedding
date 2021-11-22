@@ -5,8 +5,11 @@
 }
 
 .body {
-  background-color: #F3E5F3;
   height: 100vh;
+  background-image: url("./images/bg2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgba(243, 229, 243, 0.5);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,5 +41,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
   color: #161457;
+}
+
+.homepage {
+  height: 80vh;
+  color: #161457;
+}
+
+.homepage h1 {
+  font-size: 7rem;
+}
+
+.homepage .countdownContainer {
+  background-color: #4758CE;
+  color: #F3E5F3;
+  width: 30%;
+  border-radius: 100px;
+}
+
+.homepage .countdownContainer h4 {
+  font-size: 3rem;
+}
+
+.homepage .countdownContainer .countdown {
+  font-size: 3rem;
 }
 /*# sourceMappingURL=style.css.map */
