@@ -11,7 +11,7 @@ const getAllGifts = async (req, res) => {
 
 const newGift = (req, res, next) => {
   let title = "Elgrill";
-  let purchased = 0;
+  let purchased = false;
   const newGift = new GiftModel({
     title, 
     purchased
@@ -24,4 +24,23 @@ const newGift = (req, res, next) => {
     .then(res.json({ Added: newGift.title }));
 }
 
-module.exports = { getAllGifts, newGift };
+const updateWishlist = async (req, res, next) => {
+  const { purchased } = req.body;
+  try {
+    const allGifts = await GiftModel.find();
+    allGifts.map((gift, index) => {
+      title=gift.title
+      GiftModel.findOneAndUpdate(
+        { title }, 
+        { $set: { 
+          purchased: purchased[index]
+        } }
+        )
+        .catch((err) => res.status(500).json({ message: err.message }));
+    })
+  } catch (err) {
+    res.status(404).json({ message: err.message });
+  }
+}
+
+module.exports = { getAllGifts, newGift, updateWishlist };
