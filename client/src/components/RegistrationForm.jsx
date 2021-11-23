@@ -11,6 +11,8 @@ const RegistrationForm = (props) => {
   const [performing, setPerforming] = useState(props.performing);
   const [email, setEmail] = useState(props.email);
 
+  const name = props.fullName;
+
   /*
    * Send answers to server
    */
@@ -68,7 +70,10 @@ const RegistrationForm = (props) => {
   }
 
   return (
-    <div>
+    <div className="center">
+      
+      <h1 className="page-header center">{name}</h1>
+    <div className="styled-div reg-form">
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Kommer du på bröllopet?</label>
@@ -176,10 +181,11 @@ const RegistrationForm = (props) => {
           </>
         )}
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <button type="submit" className="button">
+          Spara
         </button>
       </form>
+    </div>
     </div>
   );
 };

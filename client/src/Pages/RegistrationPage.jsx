@@ -70,28 +70,44 @@ const RegistrationPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="registration">
       {fullName && (
-        <>
-          <h1>{fullName}</h1>
+        <div >
           {attending !== undefined ? (
             <>
-              <p>Kommer du på bröllopet? Svar: {attending}</p>
+          <h1 className="page-header center">{fullName}</h1>
+            <div className="styled-div">
+                    <h3 className="center">Din registrerade anmälan:</h3>
+                
+              <div className="d-flex justify-content-between">
+                <p>Kommer du på bröllopet? </p>
+                <p className="text-right"> {attending}</p>
+              </div>
               {attending === "Ja" && (
                 <>
-                  <p>
-                    Vill du ha alkoholfri eller alkoholhaltig dryck? Svar:{" "}
-                    {alcohol}
-                  </p>
-                  <p>Har du några allergier/matpreferenser? Svar: {diet}</p>
-                  <p>
-                    Vill du göra något uppträdande eller hålla tal under
-                    middagen? Svar: {performing}
-                  </p>
-                  {performing === "Ja" && <p>Email: {email}</p>}
+                  
+                  <div className="d-flex justify-content-between">
+                    <p>Vill du ha alkoholfri eller alkoholhaltig dryck? </p>
+                    <p className="text-right"> {alcohol}</p>
+                  </div>
+
+                  <div className="d-flex justify-content-between">
+                    <p>Har du några allergier/matpreferenser? </p>
+                    <p className="text-right"> {diet}</p>
+                  </div>
+
+                  <div className="d-flex justify-content-between">
+                    <p>Vill du göra något uppträdande eller hålla tal under middagen? </p>
+                    <p className="text-right"> {performing}</p>
+                  </div>
+                  {performing === "Ja" && 
+                    <div className="d-flex justify-content-between">
+                      <p>Email: </p>
+                      <p className="text-right"> {email}</p>
+                    </div>}
                 </>
               )}
-              <Link
+              <Link className="center"
                 to={{
                   pathname: "/registration/edit",
                   state: { registration },
@@ -99,11 +115,12 @@ const RegistrationPage = () => {
               >
                 Uppdatera din anmälan
               </Link>
+            </div>
             </>
           ) : (
             <RegistrationForm />
           )}
-        </>
+        </div>
       )}
       {err && <p>{err}</p>}
     </div>

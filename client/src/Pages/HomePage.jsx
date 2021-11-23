@@ -7,7 +7,7 @@ const HomePage = () => {
 
   return (
     <div className="homepage d-flex flex-column align-items-center justify-content-center">
-      <h1>Johanna & Björn </h1>
+      <h1>Björn & Johanna</h1>
       <div className="countdownContainer d-flex flex-column align-items-center p-2">
         <h4>Vi gifter oss om</h4>
         <Countdown className="countdown" date={weddingDate} />

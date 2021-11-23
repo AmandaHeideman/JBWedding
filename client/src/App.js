@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="body">
       <Navigation />
-      <div className="container">
+      <div className="container pt-5">
         <Switch>
           <Route path="/admin/guestlist" component={GuestListPage} />
           <Route path="/admin" component={AdminPage} />

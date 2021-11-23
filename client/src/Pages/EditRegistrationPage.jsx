@@ -15,7 +15,6 @@ const EditRegistrationPage = () => {
     <div>
       {user && 
         <>
-          <h1>{user.fullName}</h1>
           <RegistrationForm {... user}/>
         </>
       }

@@ -5,13 +5,11 @@
 }
 
 .body {
-  height: 100vh;
-  background-color: #F3E5F3;
-  /* background-image: url("./images/bg2.jpg");
-  
+  min-height: 100vh;
+  background-image: url("./images/bg6.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(243, 229, 243, 0.5); */
+  background-attachment: fixed;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -63,7 +61,7 @@ input {
 }
 
 .styled-div {
-  background-color: #F3E5F3;
+  background-color: rgba(243, 229, 243, 0.8);
   border: #ACA8F3 2px solid;
   border-radius: 20px;
   padding: 15px;
@@ -91,7 +89,7 @@ input {
 
 .homepage {
   height: 80vh;
-  color: #161457;
+  color: #4758CE;
 }
 
 .homepage h1 {
@@ -100,6 +98,8 @@ input {
 
 .homepage .countdownContainer {
   background-color: #4758CE;
+  background-color: rgba(71, 88, 206, 0.7);
+  border: #4758CE 2px solid;
   color: #F3E5F3;
   width: 350px;
   border-radius: 100px;
@@ -115,6 +115,10 @@ input {
 
 .loginpage a {
   font-size: 1rem;
+}
+
+.wishlist {
+  color: #161457;
 }
 
 .wishlist .list-container {
@@ -138,6 +142,14 @@ input {
 .wishlist .gifts {
   font-size: 1.2rem;
   padding: 5px;
+  /* input[type='checkbox']{
+      box-shadow: none;
+      color: $main;
+    } */
+}
+
+.wishlist .gifts .checkbox:checked:before {
+  background-color: green;
 }
 
 .wishlist-other-gifts {
@@ -159,5 +171,36 @@ input {
 
 .wishlist-other-gifts button {
   width: 25%;
+}
+
+.registration div {
+  width: 90%;
+  margin: auto;
+}
+
+.registration span {
+  max-width: 40%;
+  min-width: 20%;
+}
+
+.registration a {
+  color: #4758CE;
+}
+
+.registration a:hover, .registration a:focus {
+  color: #ACA8F3;
+}
+
+.reg-form {
+  width: 80%;
+}
+
+.reg-form .form-group {
+  margin: 10px;
+}
+
+.reg-form .form-group .form-check-input:checked {
+  background-color: #4758CE;
+  border-color: #4758CE;
 }
 /*# sourceMappingURL=style.css.map */
