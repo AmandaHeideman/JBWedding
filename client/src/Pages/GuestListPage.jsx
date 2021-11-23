@@ -22,9 +22,10 @@ const GuestListPage = () => {
     <div>
       {admin === true ? 
       <>
-      <h1>Gästlista</h1>
+      <h1 className="page-header">Gästlista</h1>
       {users ?
-        users.map(value => {
+      <div className="styled-div">
+        {users.map(value => {
           return (
             <>
           <h3>{value.fullName}</h3>
@@ -37,7 +38,8 @@ const GuestListPage = () => {
         </p>
         </>
           )
-        })
+        })}
+        </div>
       :
       <p>Loading</p>
       }
