@@ -13,16 +13,25 @@ $dark: #0F0F17;
 
 .body{
   height: 100vh;
-  
-  background-image: url("./images/bg2.jpg");
+  background-color: $light;
+  /* background-image: url("./images/bg2.jpg");
   
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(243, 229, 243, 0.5);
+  background-color: rgba(243, 229, 243, 0.5); */
 }
 
 h1, h2, h3, h4, h5, h6{
   font-family: 'Tangerine', cursive;
+}
+
+input{
+  border: none;
+}
+
+.page-header{
+  font-size: 4rem;
+  padding-top: 20px;
 }
 
 .button{
@@ -50,7 +59,22 @@ h1, h2, h3, h4, h5, h6{
       color: $darkAcc;
     }
   }
+}
 
+.styled-div{
+  background-color: $light;
+  border: $lightAcc 2px solid;
+  border-radius: 20px;
+  padding: 15px;
+  width: fit-content;
+  margin: 20px;
+}
+
+.center{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .homepage{
@@ -62,7 +86,7 @@ h1, h2, h3, h4, h5, h6{
   .countdownContainer{
     background-color: $main;
     color: $light;
-    width: 30%;
+    width: 350px;
     border-radius: 100px;
     h4{
       font-size: 3rem;
@@ -73,21 +97,36 @@ h1, h2, h3, h4, h5, h6{
   }
 }
 
-.loginpage{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  h1{
-    font-size: 4rem;
-  }
-  .login{
-    background-color: $main;
-    color: $light;
-    width: fit-content;
-    border-radius: 20px;
-    input{
-      border: none;
+.loginpage a{
+  font-size: 1rem;
+}
+.wishlist{
+  .list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 0;
+    p{
+      font-size: 0.9rem;
     }
   }
+  .gifts{
+    font-size: 1.2rem;
+    padding: 5px;
+  }
 }
+  .wishlist-other-gifts{
+    padding: 15px;
+    width: fit-content;
+    margin: 20px;
+    .styled-div{
+      margin-top: 0;
+      width: 100%;
+    }
+    input{
+      width: 70%;
+    }
+    button{
+      width: 25%;
+    }
+  }

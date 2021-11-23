@@ -6,14 +6,25 @@
 
 .body {
   height: 100vh;
-  background-image: url("./images/bg2.jpg");
+  background-color: #F3E5F3;
+  /* background-image: url("./images/bg2.jpg");
+  
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: rgba(243, 229, 243, 0.5);
+  background-color: rgba(243, 229, 243, 0.5); */
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Tangerine', cursive;
+}
+
+input {
+  border: none;
+}
+
+.page-header {
+  font-size: 4rem;
+  padding-top: 20px;
 }
 
 .button {
@@ -51,31 +62,18 @@ h1, h2, h3, h4, h5, h6 {
   color: #161457;
 }
 
-.homepage {
-  height: 80vh;
-  color: #161457;
+.styled-div {
+  background-color: #F3E5F3;
+  border: #ACA8F3 2px solid;
+  border-radius: 20px;
+  padding: 15px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 20px;
 }
 
-.homepage h1 {
-  font-size: 7rem;
-}
-
-.homepage .countdownContainer {
-  background-color: #4758CE;
-  color: #F3E5F3;
-  width: 30%;
-  border-radius: 100px;
-}
-
-.homepage .countdownContainer h4 {
-  font-size: 3rem;
-}
-
-.homepage .countdownContainer .countdown {
-  font-size: 3rem;
-}
-
-.loginpage {
+.center {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -91,20 +89,75 @@ h1, h2, h3, h4, h5, h6 {
           align-items: center;
 }
 
-.loginpage h1 {
-  font-size: 4rem;
+.homepage {
+  height: 80vh;
+  color: #161457;
 }
 
-.loginpage .login {
+.homepage h1 {
+  font-size: 7rem;
+}
+
+.homepage .countdownContainer {
   background-color: #4758CE;
   color: #F3E5F3;
+  width: 350px;
+  border-radius: 100px;
+}
+
+.homepage .countdownContainer h4 {
+  font-size: 3rem;
+}
+
+.homepage .countdownContainer .countdown {
+  font-size: 3rem;
+}
+
+.loginpage a {
+  font-size: 1rem;
+}
+
+.wishlist .list-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 0;
+}
+
+.wishlist .list-container p {
+  font-size: 0.9rem;
+}
+
+.wishlist .gifts {
+  font-size: 1.2rem;
+  padding: 5px;
+}
+
+.wishlist-other-gifts {
+  padding: 15px;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-  border-radius: 20px;
+  margin: 20px;
 }
 
-.loginpage .login input {
-  border: none;
+.wishlist-other-gifts .styled-div {
+  margin-top: 0;
+  width: 100%;
+}
+
+.wishlist-other-gifts input {
+  width: 70%;
+}
+
+.wishlist-other-gifts button {
+  width: 25%;
 }
 /*# sourceMappingURL=style.css.map */

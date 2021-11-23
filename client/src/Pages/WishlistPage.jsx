@@ -95,55 +95,74 @@ const WishlistPage = () => {
   
 
   return (
-    <div>
-      <h1>Wishlist</h1>
+    <div className="wishlist">
       {wishlist ? 
-      <div>
+      <div className="row">
+      <h1 className="page-header m-2 center col-6">Önskelista</h1>
       {user && checked ? 
-      (<div>
+      (<div className="styled-div col-6 mt-3 list-container">
+        <div>
         {wishlist.map((value, key)=> {
           return (
-          <>
-            <p>{value.title}
+          <div className="row gifts">
+              <span className="col-1 center">⁘</span>
+              <span className="col-9">{value.title}</span>
             {value.nonPurchasable !== true && 
               <>
               {(value.purchased == true && value.boughtBy != user._id) ? 
-              <h6> Köpt</h6>
+              <span className="col-1"> Köpt</span>
               :
-              <input type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
+              <input className="col-1 center m-2" type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
               }
               </>
             }
-            </p>
-          </>
+          </div>
           )
         })}
+        </div>
+        <p className="d-flex align-self-end">Kryssa i checkboxen ifall du har köpt något från listan. Det visas sen som "köpt" för
+          andra gäster så att inte fler köper samma sak. Du kan när som helst avchecka rutan, då står den inte längre
+          som köpt hos andra, och de kan kryssa i den
+        </p>
       </div>)
       :
-      wishlist.map((value)=> {
-        return (<p>{value.title} </p>)
-      })
+      <div className="styled-div col-6 list-container pb-3">
+      {wishlist.map((value)=> {
+        return (
+        
+          <div className="row gifts">
+            
+            <span className="col-1 center">⁘</span>
+            <span className="col-9">{value.title} </span>
+          </div>
+            )
+      })}
+      </div>
     }
     {user &&
-      <div>
+    <div className="col-5 wishlist-other-gifts">
+      <div className="styled-div">
         <h2>Har du köpt något annat?</h2>
-        <form onSubmit={submitGift}>
+        <form className="d-flex justify-content-between" onSubmit={submitGift}>
           <input type="text" onChange={handleGift} />
-          <button type="submit" className="btn btn-primary"> Submit </button>
+          <button type="submit" className="button"> Spara </button>
         </form>
+      </div>
+      <div className="styled-div">
         <h2>Andra har köpt</h2>
         {guestGifts ?
           guestGifts.map((value) => {
             return <span>{value.title}, </span>
           })
         :
-        <p>Loading</p>  
+        <p>Laddar...</p>  
         }
       </div>
+    </div>
     }
     </div>
     :
-    <h1>Loading</h1>
+    <h1>Laddar...</h1>
   }
 
     </div>

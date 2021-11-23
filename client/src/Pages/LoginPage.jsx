@@ -23,9 +23,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="loginpage">
-      <h1 className="mt-4">Logga in</h1>
-    <form className="login p-3">
+    <div className="loginpage center">
+      <h1 className="mt-4 page-header">Logga in</h1>
+      <p>Med inbjudan har du fått inloggningsuppgifter</p>
+    <form className="login styled-div">
       <div className="form-group p-3">
 
       <label for="name">Namn</label>
@@ -52,6 +53,7 @@ const LoginPage = () => {
         </div>
       <button className="button m-3" onClick={login}>Logga in</button>
     </form>
+    <p className="p-3">Har du problem att logga in? <a href="mailto:heideman.amanda@gmail.com">Kontakta Amanda</a></p>
     </div>
   )
 }
