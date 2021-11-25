@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import FetchUser from "./FetchUser";
 
 const Navigation = () => {
-  const [admin, setAdmin] = useState();
+  const [role, setRole] = useState();
+
+  const adminRoles = ["superadmin", "bridalCouple", "mum", "toastmaster"];
+  const admin = adminRoles.includes(role);
 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token) {
-      FetchUser.GetAdmin()
-        .then((res) => setAdmin(res.data))
+      FetchUser.GetUser()
+        .then((res) => setRole(res.data.role))
         .catch((err) => console.log(err.message));
     }
   }, []);

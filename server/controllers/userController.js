@@ -81,15 +81,15 @@ const getRegistration = async (req, res) => {
 }
 
 const newUser = (req, res, next) => {
-  let fullName = "test2";
-  let password = "12345";
-  let admin = false;
+  let fullName = "AnjaJohansson";
+  let password = "anjajohansson";
+  let role = "toastmaster";
   bcrypt.hash(password, salt, (error, hash) => {
     if (error) res.status(500);
     const newUser = new UserModel({
       fullName,
       password: hash,
-      admin
+      role
     });
     newUser
       .save()

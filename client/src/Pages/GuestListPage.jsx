@@ -4,8 +4,11 @@ import FetchUser from '../components/FetchUser';
 const GuestListPage = () => {
 
   const [users, setUsers ] = useState();
-  const [admin, setAdmin] = useState();
+  const [role, setRole] = useState();
 
+  const adminRoles = ["superadmin", "bridalCouple", "mum", "toastmaster"];
+  const admin = adminRoles.includes(role);
+  
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -13,10 +16,11 @@ const GuestListPage = () => {
     FetchUser.GetAllUsers()
     .then((res) => setUsers(res.data))
 
-    FetchUser.GetAdmin()
-    .then((res) => setAdmin(res.data))
+    FetchUser.GetUser()
+    .then((res) => setRole(res.data.role))
     }
   }, [])
+
 
   return (
     <div>

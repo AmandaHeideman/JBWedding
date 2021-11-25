@@ -3,11 +3,14 @@ import FetchUser from '../components/FetchUser';
 
 const AdminPage = () => {
 
-  const [admin, setAdmin] = useState();
+  const [role, setRole] = useState();
+
+  const adminRoles = ["superadmin", "bridalCouple", "mum", "toastmaster"];
+  const admin = adminRoles.includes(role);
 
   useEffect(() => {
-    FetchUser.GetAdmin()
-    .then((res) => setAdmin(res.data))
+    FetchUser.GetUser()
+    .then((res) => setRole(res.data.role))
   }, [])
 
   return (
