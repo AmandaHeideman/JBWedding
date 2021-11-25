@@ -53,6 +53,7 @@ const LoginPage = () => {
         </div>
       <button className="button m-3" onClick={login}>Logga in</button>
     </form>
+    {errorMsg && <p>{errorMsg}</p> }
     <p className="p-3">Har du problem att logga in? <a href="mailto:heideman.amanda@gmail.com">Kontakta Amanda</a></p>
     </div>
   )

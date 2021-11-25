@@ -17,6 +17,11 @@ const Navigation = () => {
     }
   }, []);
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    window.location.assign("/");
+  }
+
   return (
     <nav className="navbar navbar-expand-md text-center p-2 fixed-top">
       <a className="navbar-brand" href="/">
@@ -49,11 +54,19 @@ const Navigation = () => {
           )}
 
           {token && (
+            <>
             <li className="nav-item">
               <a className="nav-link" href="/registration">
                 Anmälan
               </a>
             </li>
+
+            <li className="nav-item">
+              <a className="nav-link curser-pointer" onClick={logout} href="/">
+                Logga ut
+              </a>
+            </li>
+            </>
           )}
 
           {admin === true && (
