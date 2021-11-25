@@ -15,10 +15,10 @@ const WishlistPage = () => {
   const [checked, setChecked] = useState();
   const [newGift, setNewGift] = useState();
   const [guestGifts, setGuestGifts] = useState();
-
-  const [ user, setUser ] = useState();
-
- 
+  const [newWishlistItem, setNewWishlistItem] = useState();
+  const [purchasable, setPurchasable] = useState();
+  const [user, setUser] = useState();
+  const [role, setRole] = useState();
 
   function getAllGifts() {
     url.get('/wishlist')
@@ -30,9 +30,6 @@ const WishlistPage = () => {
         }
         setChecked(purchasedArray)
       })
-      /* .then((res => {
-        setChecked(new Array(wishlist.length).fill(false));
-      })) */
       .catch((error) => {
         console.log(error);
       })
@@ -48,7 +45,8 @@ const WishlistPage = () => {
     getGuestGifts()
     if(token){
       FetchUser.GetUser()
-      .then((res) => setUser(res.data))
+      .then((res) => {setUser(res.data)
+      setRole(res.data.role)})
     }
   }, []);
 
@@ -92,6 +90,31 @@ const WishlistPage = () => {
     }
     )
   };
+
+  const handleWishlist = (e) => {
+    e.preventDefault();
+    setNewWishlistItem(e.target.value)
+  }
+
+  const handlePurchasable = (e) => {
+    e.preventDefault();
+    setPurchasable(e.target.value);
+  }
+  
+  const addToWishlist = (e) => {
+    e.preventDefault();
+    console.log("varför ", newWishlistItem)
+    axios.post(
+      "http://localhost:5000/wishlist/new",
+      {
+        title: newWishlistItem,
+        nonPurchasable: purchasable
+      }
+    ).then(() => {
+      window.location.reload();
+    }
+    )
+  };
   
 
   return (
@@ -99,7 +122,7 @@ const WishlistPage = () => {
       {wishlist ? 
       <div className="row">
       <h1 className="page-header m-2 center col-6">Önskelista</h1>
-      {user && checked ? 
+      {(user && checked && (role !== "bridalCouple")) ? 
       (<div className="styled-div col-6 mt-3 list-container">
         <div>
         {wishlist.map((value, key)=> {
@@ -139,7 +162,9 @@ const WishlistPage = () => {
       })}
       </div>
     }
-    {user &&
+    {user && 
+    <>
+      {role !== "bridalCouple" &&
     <div className="col-5 wishlist-other-gifts">
       <div className="styled-div">
         <h2>Har du köpt något annat?</h2>
@@ -159,13 +184,58 @@ const WishlistPage = () => {
         }
       </div>
     </div>
+      }
+      </>
+    }
+    {role === "bridalCouple" && 
+      <div className="styled-div">
+        <h2>Lägg till i önskelistan</h2>
+        <form className="d-flex justify-content-between" onSubmit={addToWishlist}>
+
+          <div className="form-group">
+              <textarea
+                className="form-control"
+                rows="1"
+                onChange={handleWishlist}
+              ></textarea>
+            </div>
+
+          <div className="form-group">
+          <label>Är det nånting ni bara vill ha en av?</label>
+          <div className=" radio">
+            <input
+              className="form-check-input"
+              name="purchasable"
+              type="radio"
+              value={false}
+              onChange={handlePurchasable}
+            />
+            <label className="form-check-label">Ja</label>
+          </div>
+          <div className="radio">
+            <input
+              className="form-check-input"
+              name="purchasable"
+              type="radio"
+              value={true}
+              onChange={handlePurchasable}
+            />
+            <label className="form-check-label">Nej</label>
+          </div>
+        </div>
+        <button type="submit" className="button">
+          Spara
+        </button>
+        </form>
+      </div>
     }
     </div>
     :
     <h1>Laddar...</h1>
   }
 
-    </div>
+    </div> 
+    
   )
 }
 

@@ -12,9 +12,9 @@ const getAllGifts = async (req, res) => {
 };
 
 const newGift = (req, res, next) => {
-  let title = "test";
+  let title = req.body.title || "test";
   let purchased = false;
-  let nonPurchasable = false;
+  let nonPurchasable = req.body.nonPurchasable || false;
   const newGift = new GiftModel({
     title, 
     purchased,
