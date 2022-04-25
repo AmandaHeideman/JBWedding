@@ -29,16 +29,23 @@ const loginUser = async (req, res, next) => {
   const { fullName, password } = req.body;
   
   UserModel.findOne({ fullName }).exec((err, user) => {
+    console.log(fullName);
     if (user) {
       bcrypt.compare(password, user.password, (error, match) => {
-        if (error) res.status(500).json({ status: 'error', error: error });
+        if (error) {
+          res.status(500).json({ status: 'error', error: error });
+        }
         else if (match){
           const token = jwt.sign({ id: user._id, fullName: user.fullName }, secretToken)
           res.status(200).json({ status: 'ok', token: token });
         }
-        else res.status(403).json({ status: 'error', error: "wrong email or password" });
+        else {
+          console.log("Wrong password");
+         res.status(403).json({ status: 'error', error: "wrong email or password" });
+        }  
       });
     } else {
+      console.log("Wrong username");
       res.status(403).json({ status: 'error', error: "wrong email or password" });
     }
   });
@@ -81,11 +88,11 @@ const getRegistration = async (req, res) => {
 }
 
 const newUser = (req, res, next) => {
-  let fullName = "AnjaJohansson";
-  let password = "anjajohansson";
-  let role = "toastmaster";
+  let fullName = "amandaheideman";
+  let password = "amhe517";
+  let role = "superadmin";
   bcrypt.hash(password, salt, (error, hash) => {
-    if (error) res.status(500);
+    if (error) return res.status(500);
     const newUser = new UserModel({
       fullName,
       password: hash,

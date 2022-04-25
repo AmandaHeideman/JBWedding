@@ -14,8 +14,8 @@ const RegistrationPage = () => {
   const [email, setEmail] = useState();
   const [err, setErr] = useState();
 
-  async function getRegistration() {
-    await axios
+  useEffect(() => {
+    axios
       .get("http://localhost:5000/users/registration", {
         headers: {
           "Content-Type": "application/json",
@@ -63,11 +63,7 @@ const RegistrationPage = () => {
         console.log(err.message);
         setErr("Du behöver logga in för att se den här sidan");
       });
-  }
-
-  useEffect(() => {
-    getRegistration();
-  }, []);
+  }, [token]);
 
   return (
     <div className="registration">

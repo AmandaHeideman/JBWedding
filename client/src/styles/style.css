@@ -113,6 +113,12 @@ input {
   font-size: 3rem;
 }
 
+.homepage iframe {
+  width: 600px;
+  height: 450px;
+  border: 10px;
+}
+
 .loginpage a {
   font-size: 1rem;
 }
@@ -202,5 +208,18 @@ input {
 .reg-form .form-group .form-check-input:checked {
   background-color: #4758CE;
   border-color: #4758CE;
+}
+
+.weddingday img {
+  width: 100%;
+  -o-object-fit: fill;
+     object-fit: fill;
+}
+
+.directions .map {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 /*# sourceMappingURL=style.css.map */

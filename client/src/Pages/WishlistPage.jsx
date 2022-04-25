@@ -48,11 +48,11 @@ const WishlistPage = () => {
       .then((res) => {setUser(res.data)
       setRole(res.data.role)})
     }
-  }, []);
+  }, [token]);
 
   const onCheck = (e) => {
     const updatedCheckedState = checked.map((bool, index) =>
-      index == e.target.value ? !bool : bool
+      index === e.target.value ? !bool : bool
     );
     setChecked(updatedCheckedState);
 
@@ -127,12 +127,12 @@ const WishlistPage = () => {
         <div>
         {wishlist.map((value, key)=> {
           return (
-          <div className="row gifts">
+          <div key={key} className="row gifts">
               <span className="col-1 center">⁘</span>
               <span className="col-9">{value.title}</span>
             {value.nonPurchasable !== true && 
               <>
-              {(value.purchased == true && value.boughtBy != user._id) ? 
+              {(value.purchased === true && value.boughtBy !== user._id) ? 
               <span className="col-1"> Köpt</span>
               :
               <input className="col-1 center m-2" type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
@@ -150,10 +150,10 @@ const WishlistPage = () => {
       </div>)
       :
       <div className="styled-div col-6 list-container pb-3">
-      {wishlist.map((value)=> {
+      {wishlist.map((value, key)=> {
         return (
         
-          <div className="row gifts">
+          <div key={key} className="row gifts">
             
             <span className="col-1 center">⁘</span>
             <span className="col-9">{value.title} </span>
@@ -161,6 +161,7 @@ const WishlistPage = () => {
             )
       })}
       </div>
+      
     }
     {user && 
     <>
@@ -176,8 +177,8 @@ const WishlistPage = () => {
       <div className="styled-div">
         <h2>Andra har köpt</h2>
         {guestGifts ?
-          guestGifts.map((value) => {
-            return <span>{value.title}, </span>
+          guestGifts.map((value, key) => {
+            return <span key={key}>{value.title}, </span>
           })
         :
         <p>Laddar...</p>  

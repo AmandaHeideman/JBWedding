@@ -15,7 +15,7 @@ const Navigation = () => {
         .then((res) => setRole(res.data.role))
         .catch((err) => console.log(err.message));
     }
-  }, []);
+  }, [token]);
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -43,6 +43,16 @@ const Navigation = () => {
           <li className="nav-item">
             <a className="nav-link" href="/wishlist">
               Önskelista
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/weddingday">
+              Bröllopsdagen
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/directions">
+              Hitta hit
             </a>
           </li>
           {!token && (

@@ -7,13 +7,17 @@ const LoginPage = () => {
   const [ password, setPassword ] = useState("");
   const [ errorMsg, setErrorMsg ] = useState();
 
-  let user = localStorage.getItem('user');
+  //let user = localStorage.getItem('user');
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
+    console.log("Login clicked")
     Axios.post("http://localhost:5000/users/login", {
       fullName: fullName,
       password: password,
-    }).then((res) => { 
+    })
+    .then((res) => { 
+      console.log("setting token")
       localStorage.setItem('token', res.data.token);
       window.location.assign('/');
     }).catch((err) => {

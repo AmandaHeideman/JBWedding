@@ -16,7 +16,7 @@ const GuestListPage = () => {
 
       FetchUser.GetUser().then((res) => setRole(res.data.role));
     }
-  }, []);
+  }, [token]);
 
   return (
     <div>
@@ -27,7 +27,7 @@ const GuestListPage = () => {
             <div className="styled-div">
               
 
-              <table class="table">
+              <table className="table">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -55,14 +55,14 @@ const GuestListPage = () => {
 
                   {(users.map((value, index) => {
                     return (
-                      <tr>
+                      <tr key={index}>
                         <th scope="row">{index+1}</th>
                         <td>{value.fullName}</td>
 
                         <td>
-                          {value.attending == true && <span>Ja</span>}
-                          {value.attending == false && <span>Nej</span>}
-                          {value.attending == undefined && <span>Inte svarat</span>}
+                          {value.attending === true && <span>Ja</span>}
+                          {value.attending === false && <span>Nej</span>}
+                          {value.attending === undefined && <span>Inte svarat</span>}
                         </td>
 
                         {role !== "bridalCouple" &&
@@ -70,8 +70,8 @@ const GuestListPage = () => {
                             {role !== "toastmaster" &&
                               <>
                                 <td>
-                                  {value.alcohol == true && <span>Alkoholhaltig dryck</span>}
-                                  {value.alcohol == false && <span>Alkhoholfri dryck</span>}
+                                  {value.alcohol === true && <span>Alkoholhaltig dryck</span>}
+                                  {value.alcohol === false && <span>Alkhoholfri dryck</span>}
                                 </td>
                       
                                 <td>
@@ -83,8 +83,8 @@ const GuestListPage = () => {
                             {role !== "mum" &&
                               <>
                                 <td>
-                                  {value.performing == true && <span> Ja</span>}
-                                  {value.performing == false && <span> Nej</span>}
+                                  {value.performing === true && <span> Ja</span>}
+                                  {value.performing === false && <span> Nej</span>}
                                 </td>
 
                                 <td>
