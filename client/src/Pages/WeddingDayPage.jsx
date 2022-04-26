@@ -26,7 +26,7 @@ const WeddingDayPage = () => {
         </p>
       </div>
       <div className="styled-div col-5">
-        <img classNAme="johannaandbjornpic" src={pic1} alt="Johanna och Björn"/>
+        <img className="johannaandbjornpic" src={pic1} alt="Johanna och Björn"/>
       </div>
 
     </div>

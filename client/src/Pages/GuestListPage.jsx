@@ -22,7 +22,7 @@ const GuestListPage = () => {
     <div>
       {admin === true ? (
         <>
-          <h1 className="page-header">Gästlista</h1>
+          <h1 className="page-header m-2 center">Gästlista</h1>
           {users ? (
             <div className="styled-div">
               

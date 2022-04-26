@@ -121,7 +121,7 @@ const WishlistPage = () => {
     <div className="wishlist">
       {wishlist ? 
       <div className="row">
-      <h1 className="page-header m-2 center col-6">Önskelista</h1>
+      <h1 className="page-header m-2 center">Önskelista</h1>
       {(user && checked && (role !== "bridalCouple")) ? 
       (<div className="styled-div col-6 mt-3 list-container">
         <div>

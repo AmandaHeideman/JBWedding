@@ -88,9 +88,9 @@ const getRegistration = async (req, res) => {
 }
 
 const newUser = (req, res, next) => {
-  let fullName = "amandaheideman";
-  let password = "amhe517";
-  let role = "superadmin";
+  let fullName = "björnmoberg";
+  let password = "bjmo148";
+  let role = "bridalCouple";
   bcrypt.hash(password, salt, (error, hash) => {
     if (error) return res.status(500);
     const newUser = new UserModel({
