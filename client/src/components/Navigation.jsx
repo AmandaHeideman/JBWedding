@@ -55,6 +55,11 @@ const Navigation = () => {
               Hitta hit
             </a>
           </li>
+          <li className="nav-item">
+            <a className="nav-link" href="/hotels">
+              Hotelltips
+            </a>
+          </li>
           {!token && (
             <li className="nav-item">
               <a className="nav-link" href="/login">
