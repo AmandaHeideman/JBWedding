@@ -9,6 +9,7 @@ import AdminPage from './Pages/AdminPage';
 import GuestListPage from './Pages/GuestListPage';
 import WeddingDayPage from './Pages/WeddingDayPage';
 import DirectionsPage from './Pages/DirectionsPage';
+import HotelPage from './Pages/HotelPage';
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
           <Route path="/admin/guestlist" component={GuestListPage} />
           <Route path="/admin" component={AdminPage} />
           <Route path="/directions" component={DirectionsPage} />
+          <Route path="/hotels" component={HotelPage} />
           <Route path="/login" component={LoginPage} />
           <Route path="/registration/edit" component={EditRegistrationPage} />
           <Route path="/registration" component={RegistrationPage} />
