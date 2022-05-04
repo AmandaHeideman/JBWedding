@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import Axios from 'axios';
+import axios from 'axios';
+
+const url = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL
+});
 
 const LoginPage = () => {
-
+  
+  require('dotenv').config();
   const [ fullName, setFullName ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ errorMsg, setErrorMsg ] = useState();
-
+  
   //let user = localStorage.getItem('user');
-
   const login = (e) => {
     e.preventDefault();
-    console.log("Login clicked")
-    Axios.post("http://localhost:5000/users/login", {
+    url.post("/users/login", {
       fullName: fullName,
       password: password,
     })

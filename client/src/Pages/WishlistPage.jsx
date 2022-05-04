@@ -3,7 +3,7 @@ import axios from 'axios';
 import FetchUser from '../components/FetchUser';
 
 const url = axios.create({
-  baseURL: process.env.API_KEY || 'http://localhost:5000'
+  baseURL: process.env.REACT_APP_API_BASE_URL
 });
 
 
@@ -36,7 +36,7 @@ const WishlistPage = () => {
   }
 
   function getGuestGifts(){
-    axios.get('http://localhost:5000/wishlist/guestgifts')
+    url.get('/wishlist/guestgifts')
     .then((res) => setGuestGifts(res.data))
   }
 
@@ -58,8 +58,8 @@ const WishlistPage = () => {
 
     const updatedItem = wishlist[e.target.value].title;
     const purchased = e.target.checked
-    axios.post(
-      "http://localhost:5000/wishlist",
+    url.post(
+      "/wishlist",
       {
         title: updatedItem,
         purchased: purchased
@@ -78,8 +78,8 @@ const WishlistPage = () => {
   
   const submitGift = (e) => {
     e.preventDefault();
-    axios.post(
-      "http://localhost:5000/wishlist/add",
+    url.post(
+      "/wishlist/add",
       {
         title: newGift
       }
@@ -103,9 +103,8 @@ const WishlistPage = () => {
   
   const addToWishlist = (e) => {
     e.preventDefault();
-    console.log("varför ", newWishlistItem)
-    axios.post(
-      "http://localhost:5000/wishlist/new",
+    url.post(
+      "/wishlist/new",
       {
         title: newWishlistItem,
         nonPurchasable: purchasable

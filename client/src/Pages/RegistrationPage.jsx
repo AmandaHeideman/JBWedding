@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import RegistrationForm from "../components/RegistrationForm";
 import axios from "axios";
 
+const url = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL
+});
+
 const RegistrationPage = () => {
   const token = localStorage.getItem("token");
   const [registration, setRegistraion] = useState();
@@ -15,8 +19,7 @@ const RegistrationPage = () => {
   const [err, setErr] = useState();
 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/users/registration", {
+    url.get("/users/registration", {
         headers: {
           "Content-Type": "application/json",
           Authorization: token,

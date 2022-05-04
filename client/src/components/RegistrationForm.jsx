@@ -1,6 +1,10 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import axios from "axios";
 import { useHistory } from "react-router-dom";
+
+const url = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL
+});
 
 const RegistrationForm = (props) => {
   const history = useHistory();
@@ -18,8 +22,8 @@ const RegistrationForm = (props) => {
    */
 
   const onSubmit = () => {
-    Axios.post(
-      "http://localhost:5000/users/registration",
+    url.post(
+      "/users/registration",
       {
         attending: attending,
         alcohol: alcohol,
