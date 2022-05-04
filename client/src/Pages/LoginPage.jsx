@@ -29,6 +29,12 @@ const LoginPage = () => {
     })
   };
 
+  const handleKeypress = (e) => {
+    if (e.keyCode === 13) {
+      login();
+    }
+  }
+
   return (
     <div className="loginpage center">
       <h1 className="mt-4 page-header">Logga in</h1>
@@ -56,6 +62,7 @@ const LoginPage = () => {
         onChange={(e) => {
           setPassword(e.target.value);
         }}
+        onKeyPress={handleKeypress}
         />
         </div>
       <button className="button m-3" onClick={login}>Logga in</button>
