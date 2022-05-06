@@ -6,7 +6,9 @@ const WeddingDayPage = () => {
   return (
     <div className="row weddingday">
       <h1 className="page-header center ">Bröllopsdagen</h1>
-      <div className="styled-div col-6">
+      <div className="d-grid-60-40">
+
+      <div className="styled-div">
         <p>
         Varmt välkommen på vårt bröllop! Vigseln äger rum i Klosterkyrkan i Lund 13.30 lördagen
         den 30 juli 2022, och efteråt blir det fest i Magle Konserthus.
@@ -25,8 +27,9 @@ const WeddingDayPage = () => {
         Vi önskar ett barnfritt bröllop.
         </p>
       </div>
-      <div className="styled-div col-5">
+      <div className="styled-div">
         <img className="johannaandbjornpic" src={pic1} alt="Johanna och Björn"/>
+      </div>
       </div>
 
     </div>

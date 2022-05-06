@@ -4,13 +4,14 @@ import pic3 from "../styles/images/johannaobjörn3.jpg";
 
 const HotelPage = () => {
   return (
-    <div className="row weddingday">
+    <div className="weddingday">
       <h1 className="page-header center ">Hotelltips</h1>
-      <div className="styled-div col-5">
+      <div className="d-grid-40-60">
+      <div className="styled-div">
         <img className="mb-3" src={pic2} alt="Björn och Johanna" />
         <img src={pic3} alt="Björn och Johanna" />
       </div>
-      <div className="styled-div col-6">
+      <div className="styled-div">
         <p>
           Hotelltips från Hans och Kerstin om de hotell i Lund som ligger verkligt centralt! 
           <br /><br />
@@ -48,6 +49,7 @@ const HotelPage = () => {
           <br />
           <a href="https://www.grandilund.se/">Länk till hotellet</a>
         </p>
+      </div>
       </div>
     </div>
   );

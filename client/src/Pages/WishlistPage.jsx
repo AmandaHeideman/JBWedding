@@ -118,11 +118,11 @@ const WishlistPage = () => {
 
   return (
     <div className="wishlist">
-      {wishlist ? 
-      <div className="row">
       <h1 className="page-header m-2 center">Önskelista</h1>
+      {wishlist ? 
+      <div className="d-grid-60-40">
       {(user && checked && (role !== "bridalCouple")) ? 
-      (<div className="styled-div col-6 mt-3 list-container">
+      (<div className="styled-div mt-3 list-container">
         <div>
         {wishlist.map((value, key)=> {
           return (
@@ -148,7 +148,7 @@ const WishlistPage = () => {
         </p>
       </div>)
       :
-      <div className="styled-div col-6 list-container pb-3">
+      <div className="styled-div list-container pb-3">
       {wishlist.map((value, key)=> {
         return (
         
@@ -165,7 +165,7 @@ const WishlistPage = () => {
     {user && 
     <>
       {role !== "bridalCouple" &&
-    <div className="col-5 wishlist-other-gifts">
+    <div className="wishlist-other-gifts">
       <div className="styled-div">
         <h2>Har du köpt något annat?</h2>
         <form className="d-flex justify-content-between" onSubmit={submitGift}>
