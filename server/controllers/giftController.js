@@ -15,10 +15,12 @@ const newGift = (req, res, next) => {
   let title = req.body.title || "test";
   let purchased = false;
   let nonPurchasable = req.body.nonPurchasable || false;
+  let link = req.body.link || null;
   const newGift = new GiftModel({
     title, 
     purchased,
-    nonPurchasable
+    nonPurchasable,
+    link
   });
   newGift
     .save()

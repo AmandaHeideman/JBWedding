@@ -16,6 +16,7 @@ const WishlistPage = () => {
   const [newGift, setNewGift] = useState();
   const [guestGifts, setGuestGifts] = useState();
   const [newWishlistItem, setNewWishlistItem] = useState();
+  const [newLink, setNewLink] = useState();
   const [purchasable, setPurchasable] = useState();
   const [user, setUser] = useState();
   const [role, setRole] = useState();
@@ -96,6 +97,11 @@ const WishlistPage = () => {
     setNewWishlistItem(e.target.value)
   }
 
+  const handleLink = (e) => {
+    e.preventDefault();
+    setNewLink(e.target.value)
+  }
+
   const handlePurchasable = (e) => {
     e.preventDefault();
     setPurchasable(e.target.value);
@@ -107,7 +113,8 @@ const WishlistPage = () => {
       "/wishlist/new",
       {
         title: newWishlistItem,
-        nonPurchasable: purchasable
+        nonPurchasable: purchasable,
+        link: newLink
       }
     ).then(() => {
       window.location.reload();
@@ -125,10 +132,12 @@ const WishlistPage = () => {
       (<div className="styled-div mt-3 list-container">
         <div>
         {wishlist.map((value, key)=> {
+          console.log(value.link);
           return (
           <div key={key} className="row gifts">
               <span className="col-1 center">⁘</span>
-              <span className="col-9">{value.title}</span>
+              <span className="col-8">{value.title}</span>
+              {value.link ? <span className="col-1"><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
             {value.nonPurchasable !== true && 
               <>
               {(value.purchased === true && value.boughtBy !== user._id) ? 
@@ -156,6 +165,8 @@ const WishlistPage = () => {
             
             <span className="col-1 center">⁘</span>
             <span className="col-9">{value.title} </span>
+            {value.link ? <span className="col-1"><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
+            
           </div>
             )
       })}
@@ -190,9 +201,9 @@ const WishlistPage = () => {
     {role === "bridalCouple" && 
       <div className="styled-div">
         <h2>Lägg till i önskelistan</h2>
-        <form className="d-flex justify-content-between" onSubmit={addToWishlist}>
+        <form className="d-flex justify-content-between flex-column" onSubmit={addToWishlist}>
 
-          <div className="form-group">
+          <div className="form-group m-2">
               <textarea
                 className="form-control"
                 rows="1"
@@ -200,7 +211,16 @@ const WishlistPage = () => {
               ></textarea>
             </div>
 
-          <div className="form-group">
+          <div className="form-group m-2">
+            <label>Eventuell länk</label>
+              <textarea
+                className="form-control"
+                rows="1"
+                onChange={handleLink}
+              ></textarea>
+            </div>
+
+          <div className="form-group m-2">
           <label>Är det nånting ni bara vill ha en av?</label>
           <div className=" radio">
             <input
@@ -223,7 +243,7 @@ const WishlistPage = () => {
             <label className="form-check-label">Nej</label>
           </div>
         </div>
-        <button type="submit" className="button">
+        <button type="submit" className="button m-2">
           Spara
         </button>
         </form>
