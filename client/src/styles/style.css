@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap");
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .body {
@@ -12,8 +12,13 @@
   background-attachment: fixed;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Tangerine', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Tangerine", cursive;
 }
 
 input {
@@ -26,43 +31,69 @@ input {
 }
 
 .button {
-  background-color: #ACA8F3;
+  background-color: #aca8f3;
   color: #161457;
   border: none;
   border-radius: 10px;
   padding: 8px;
 }
 
-.navbar {
+.nav {
   background-color: #161457;
-  color: #F3E5F3;
+  color: #f3e5f3;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.navbar a {
-  color: #F3E5F3;
+.nav .dropdown-item {
+  color: #0f0f17;
 }
 
-.navbar a:hover, .navbar a:focus {
-  color: #ACA8F3;
-}
-
-.navbar .dropdown-item {
-  color: #0F0F17;
-}
-
-.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+.nav .dropdown-item:hover, .nav .dropdown-item:focus {
   color: #161457;
+}
+
+.nav .nav-home {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: #f3e5f3;
+}
+
+.nav-menu ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  height: 25px;
+  margin: 0;
+}
+
+.nav-menu li {
+  list-style-type: none;
+  margin: 0 1rem;
+}
+
+.nav-menu li a {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  color: #f3e5f3;
+}
+
+.nav-menu li a:hover, .nav-menu li a:focus {
+  color: #aca8f3;
 }
 
 .styled-div {
   background-color: rgba(243, 229, 243, 0.8);
-  border: #ACA8F3 2px solid;
+  border: #aca8f3 2px solid;
   border-radius: 20px;
   padding: 15px;
   width: -webkit-fit-content;
@@ -103,7 +134,7 @@ input {
 
 .homepage {
   height: 80vh;
-  color: #4758CE;
+  color: #4758ce;
 }
 
 .homepage h1 {
@@ -111,10 +142,10 @@ input {
 }
 
 .homepage .countdownContainer {
-  background-color: #4758CE;
+  background-color: #4758ce;
   background-color: rgba(71, 88, 206, 0.7);
-  border: #4758CE 2px solid;
-  color: #F3E5F3;
+  border: #4758ce 2px solid;
+  color: #f3e5f3;
   width: 350px;
   border-radius: 100px;
 }
@@ -125,12 +156,6 @@ input {
 
 .homepage .countdownContainer .countdown {
   font-size: 3rem;
-}
-
-.homepage iframe {
-  width: 600px;
-  height: 450px;
-  border: 10px;
 }
 
 .loginpage a {
@@ -204,11 +229,11 @@ input {
 }
 
 .registration a {
-  color: #4758CE;
+  color: #4758ce;
 }
 
 .registration a:hover, .registration a:focus {
-  color: #ACA8F3;
+  color: #aca8f3;
 }
 
 .reg-form {
@@ -220,8 +245,8 @@ input {
 }
 
 .reg-form .form-group .form-check-input:checked {
-  background-color: #4758CE;
-  border-color: #4758CE;
+  background-color: #4758ce;
+  border-color: #4758ce;
 }
 
 .weddingday img {
@@ -235,5 +260,97 @@ input {
   height: 100%;
   -o-object-fit: fill;
      object-fit: fill;
+}
+
+.fa-bars {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #161457;
+  color: #f3e5f3;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  display: none;
+}
+
+.fa-bars:hover {
+  background-color: #4758ce;
+}
+
+@media screen and (max-width: 770px) {
+  .fa-bars {
+    display: block;
+  }
+  .nav-menu ul {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 77px);
+    background-color: #161457;
+    border-top: 1px solid black;
+    display: none;
+  }
+  .nav-menu .expanded {
+    display: block;
+  }
+  .nav-menu li {
+    text-align: center;
+    margin: 0;
+  }
+  .nav-menu li a {
+    color: #f3e5f3;
+    width: 100%;
+    padding: 1.5rem 0;
+    font-size: 1.2rem;
+  }
+  .nav-menu li:hover {
+    background-color: #4758ce;
+  }
+  .homepage h1 {
+    width: 100%;
+    font-size: 15vw;
+    text-align: center;
+  }
+  .homepage .countdownContainer {
+    width: 70%;
+    border-radius: 100px;
+  }
+  .homepage .countdownContainer h4 {
+    font-size: 7vw;
+  }
+  .homepage .countdownContainer .countdown {
+    font-size: 7vw;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .homepage h1 {
+    width: 100%;
+    font-size: 5rem;
+    text-align: center;
+  }
+  .homepage .countdownContainer {
+    width: 80%;
+    border-radius: 100px;
+  }
+  .homepage .countdownContainer h4 {
+    font-size: 2rem;
+  }
+  .homepage .countdownContainer .countdown {
+    font-size: 2rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */

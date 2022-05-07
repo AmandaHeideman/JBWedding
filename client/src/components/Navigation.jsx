@@ -3,6 +3,7 @@ import FetchUser from "./FetchUser";
 
 const Navigation = () => {
   const [role, setRole] = useState();
+  const [isNavExpanded, setIsNavExpanded] = useState(false);
 
   const adminRoles = ["superadmin", "bridalCouple", "mum", "toastmaster"];
   const admin = adminRoles.includes(role);
@@ -23,46 +24,42 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-sm text-center p-2 fixed-top">
-      <a className="navbar-brand" href="/">
-        Home
+    <div className="nav text-center p-2 fixed-top">
+      <a className="nav-home p-2" href="/">
+        Hem
       </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNav">
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link" href="/wishlist">
+    <button 
+      className="fa fa-bars" 
+      onClick={() => {
+          setIsNavExpanded(!isNavExpanded);
+      }}>
+    </button>
+    <div className="nav-menu">
+
+        <ul className={isNavExpanded && "expanded"}>
+          <li>
+            <a href="/wishlist">
               Önskelista
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/weddingday">
+          <li>
+            <a href="/weddingday">
               Bröllopsdagen
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/directions">
+          <li>
+            <a href="/directions">
               Hitta hit
             </a>
           </li>
-          <li className="nav-item">
-            <a className="nav-link" href="/hotels">
+          <li>
+            <a href="/hotels">
               Hotelltips
             </a>
           </li>
           {!token && (
-            <li className="nav-item">
-              <a className="nav-link" href="/login">
+            <li>
+              <a href="/login">
                 Logga in
               </a>
             </li>
@@ -70,14 +67,14 @@ const Navigation = () => {
 
           {token && (
             <>
-            <li className="nav-item">
-              <a className="nav-link" href="/registration">
+            <li>
+              <a href="/registration">
                 Anmälan
               </a>
             </li>
 
-            <li className="nav-item">
-              <a className="nav-link curser-pointer" onClick={logout} href="/">
+            <li>
+              <a onClick={logout} href="/">
                 Logga ut
               </a>
             </li>
@@ -85,8 +82,8 @@ const Navigation = () => {
           )}
 
           {admin === true && (
-            <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" href="/admin" data-bs-toggle="dropdown"  aria-expanded="false">
+            <li className="dropdown">
+            <a className="dropdown-toggle" href="/admin" data-bs-toggle="dropdown"  aria-expanded="false">
               Admin
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -96,8 +93,8 @@ const Navigation = () => {
           
           )}
         </ul>
-      </div>
-    </nav>
+          </div>
+    </div>
   );
 };
 

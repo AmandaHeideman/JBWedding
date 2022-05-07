@@ -1,67 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tangerine:wght@700&display=swap");
 
-$light: #F3E5F3;
-$lightAcc: #ACA8F3;
-$main: #4758CE;
+$light: #f3e5f3;
+$lightAcc: #aca8f3;
+$main: #4758ce;
 $darkAcc: #161457;
-$dark: #0F0F17;
+$dark: #0f0f17;
 
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
-.body{
+.body {
   min-height: 100vh;
   //background-color: $light;
   background-image: url("./images/bg5.jpg");
-  
+
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }
 
-h1, h2, h3, h4, h5, h6{
-  font-family: 'Tangerine', cursive;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Tangerine", cursive;
 }
 
-input{
+input {
   border: none;
 }
 
-.page-header{
+.page-header {
   font-size: 4rem;
   padding-top: 20px;
 }
 
-.button{
-  background-color: $lightAcc; 
+.button {
+  background-color: $lightAcc;
   color: $darkAcc;
   border: none;
   border-radius: 10px;
   padding: 8px;
 }
 
-.navbar{
+.nav {
   background-color: $darkAcc;
   color: $light;
   display: flex;
-  justify-content:space-evenly;
-  a{
-    color: $light;
-    &:hover, &:focus{
-      color: $lightAcc;
-    }
-  }
-  .dropdown-item{
+  justify-content: space-between;
+  align-items: center;
+  
+  .dropdown-item {
     color: $dark;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       color: $darkAcc;
     }
   }
+  .nav-home {
+    text-decoration: none;
+    font-size: 1.2rem;
+    color: $light;
+  }
 }
 
-.styled-div{
+.nav-menu {
+  ul {
+    display: flex;
+    padding: 0;
+    height: 25px;
+    margin: 0;
+  }
+  li {
+    list-style-type: none;
+    margin: 0 1rem;
+
+    a {
+      text-decoration: none;
+      display: block;
+      width: 100%;
+      color: $light;
+      &:hover, &:focus {
+        color: $lightAcc;
+      }
+    }
+  }
+}
+.styled-div {
   background-color: rgba(243, 229, 243, 0.8);
   border: $lightAcc 2px solid;
   border-radius: 20px;
@@ -69,121 +98,116 @@ input{
   width: fit-content;
   margin: 20px;
 }
-.d-grid-40-60{
+.d-grid-40-60 {
   display: grid;
   grid-template-columns: 40% 60%;
 }
 
-.d-grid-60-40{
+.d-grid-60-40 {
   display: grid;
   grid-template-columns: 60% 40%;
 }
 
-.center{
+.center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.homepage{
+.homepage {
   height: 80vh;
   color: $main;
-  h1{
+  h1 {
     font-size: 7rem;
   }
-  .countdownContainer{
+  .countdownContainer {
     background-color: $main;
-    
-  background-color: rgba(71, 88, 206, 0.7);
-  border: $main 2px solid;
+
+    background-color: rgba(71, 88, 206, 0.7);
+    border: $main 2px solid;
     color: $light;
     width: 350px;
     border-radius: 100px;
-    h4{
+    h4 {
       font-size: 3rem;
     }
-    .countdown{
+    .countdown {
       font-size: 3rem;
     }
-  }
-  iframe{
-    width: 600px;
-    height: 450px;
-    border: 10px; 
   }
 }
 
-.loginpage a{
+.loginpage a {
   font-size: 1rem;
 }
-.wishlist{
+.wishlist {
   color: $darkAcc;
-  
-  .list-container{
+
+  .list-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 0;
-    p{
+    p {
       font-size: 0.9rem;
     }
-    
   }
-  .gifts{
+  .gifts {
     font-size: 1.2rem;
     padding: 5px;
-    
+
     /* input[type='checkbox']{
       box-shadow: none;
       color: $main;
     } */
-    .checkbox:checked:before{
-      background-color:green;
-      }
+    .checkbox:checked:before {
+      background-color: green;
+    }
   }
 }
-  .wishlist-other-gifts{
-    padding: 15px;
-    width: fit-content;
-    margin: 20px;
-    .styled-div{
-      margin-top: 0;
-      width: 100%;
-    }
-    input{
-      width: 70%;
-    }
-    button{
-      width: 25%;
-    }
+.wishlist-other-gifts {
+  padding: 15px;
+  width: fit-content;
+  margin: 20px;
+  .styled-div {
+    margin-top: 0;
+    width: 100%;
   }
+  input {
+    width: 70%;
+  }
+  button {
+    width: 25%;
+  }
+}
 
-.registration{
-  div{
+.registration {
+  div {
     width: 90%;
-    margin:auto;
+    margin: auto;
   }
-  span{
+  span {
     max-width: 40%;
     min-width: 20%;
   }
-  a{
+  a {
     color: $main;
-    &:hover, &:focus{
+    &:hover,
+    &:focus {
       color: $lightAcc;
     }
   }
 }
 
-.reg-form{
+.reg-form {
   width: 80%;
-  .form-group{
+  .form-group {
     margin: 10px;
     .form-check-input:checked {
       background-color: $main;
       border-color: $main;
-  }
+    }
   }
 }
 
@@ -195,9 +219,105 @@ input{
 }
 
 .directions {
-  .map{
+  .map {
     width: 100%;
     height: 100%;
-    object-fit: fill; 
+    object-fit: fill;
+  }
+}
+.fa-bars {
+  border: 0;
+  height: 40px;
+  width: 40px;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background-color: #161457;
+  color: #f3e5f3;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  position: absolute;
+  top: 50%;
+  right: 25px;
+  transform: translateY(-50%);
+  display: none;
+  &:hover {
+    background-color: #4758ce;
+  }
+}
+
+@media screen and (max-width: 770px) {
+  .fa-bars {
+    display: block;
+  }
+  .nav-menu {
+    ul {
+      // navigation menu is positioned to start 60px from the top of the document (which is directly below the navbar)
+      position: absolute;
+      top: 60px;
+      left: 0;
+      // stacks the li tags vertically
+      flex-direction: column;
+      // makes menu span full height and width
+      width: 100%;
+      height: calc(100vh - 77px);
+      background-color: #161457;
+      border-top: 1px solid black;
+      display: none;
+    }
+    .expanded {
+      display: block;
+    }
+    li {
+      // centers link text and strips off margin
+      text-align: center;
+      margin: 0;
+      a {
+        color: #f3e5f3;
+        // increases the surface area of the anchor tag to span the full width of the menu
+        width: 100%;
+        padding: 1.5rem 0;
+        font-size: 1.2rem;
+      }
+      &:hover {
+        background-color: #4758ce;
+      }
+    }
+  }
+  .homepage {
+    h1 {
+      width: 100%;
+      font-size: 15vw;
+      text-align: center;
+    }
+    .countdownContainer {
+      width: 70%;
+      border-radius: 100px;
+      h4 {
+        font-size: 7vw;
+      }
+      .countdown {
+        font-size: 7vw;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .homepage {
+    h1 {
+      width: 100%;
+      font-size: 5rem;
+      text-align: center;
+    }
+    .countdownContainer {
+      width: 80%;
+      border-radius: 100px;
+      h4 {
+        font-size: 2rem;
+      }
+      .countdown {
+        font-size: 2rem;
+      }
+    }
   }
 }
