@@ -211,7 +211,7 @@ input {
   }
 }
 
-.weddingday {
+.weddingday, .hotels {
   img {
     width: 100%;
     object-fit: fill;
@@ -298,6 +298,19 @@ input {
       .countdown {
         font-size: 7vw;
       }
+    }
+  }
+  
+  .d-grid-40-60, .d-grid-60-40{
+    grid-template-columns: 100%;
+  }
+
+  .hotels{
+    .info{
+      grid-row-start: 1;
+    }
+    .pic{
+      grid-row-start: 2;
     }
   }
 }

@@ -249,7 +249,7 @@ input {
   border-color: #4758ce;
 }
 
-.weddingday img {
+.weddingday img, .hotels img {
   width: 100%;
   -o-object-fit: fill;
      object-fit: fill;
@@ -333,6 +333,18 @@ input {
   }
   .homepage .countdownContainer .countdown {
     font-size: 7vw;
+  }
+  .d-grid-40-60, .d-grid-60-40 {
+    -ms-grid-columns: 100%;
+        grid-template-columns: 100%;
+  }
+  .hotels .info {
+    -ms-grid-row: 1;
+        grid-row-start: 1;
+  }
+  .hotels .pic {
+    -ms-grid-row: 2;
+        grid-row-start: 2;
   }
 }
 

@@ -4,14 +4,14 @@ import pic3 from "../styles/images/johannaobjörn3.jpg";
 
 const HotelPage = () => {
   return (
-    <div className="weddingday">
+    <div className="hotels">
       <h1 className="page-header center ">Hotelltips</h1>
       <div className="d-grid-40-60">
-      <div className="styled-div">
+      <div className="styled-div pic">
         <img className="mb-3" src={pic2} alt="Björn och Johanna" />
         <img src={pic3} alt="Björn och Johanna" />
       </div>
-      <div className="styled-div">
+      <div className="styled-div info">
         <p>
           Hotelltips från Hans och Kerstin om de hotell i Lund som ligger verkligt centralt! 
           <br /><br />
