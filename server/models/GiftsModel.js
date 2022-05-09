@@ -5,7 +5,8 @@ const giftSchema = new Schema({
   title: { type: String, required: true },
   purchased: { type: Boolean },
   nonPurchasable: { type: Boolean },
-  boughtBy: {type: mongoose.Schema.Types.ObjectId, ref: 'users'}
+  boughtBy: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+  link: {type: String}
 });
 
 const Gift = mongoose.model('Gifts', giftSchema);
