@@ -166,9 +166,10 @@ const WishlistPage = () => {
       </div>)
       :
       <div className="styled-div list-container pb-3">
+      <p>För att kryssa i saker du köpt och se om något redan är köpt, <a href="/login">logga in</a></p>
       {wishlist.map((value, key)=> {
         return (
-        
+          <>
           <div key={key} className="row gifts">
             <div className="row-1">
             <span className="center">⁘</span>
@@ -178,6 +179,7 @@ const WishlistPage = () => {
             {value.link ? <span className="col-1"><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
             </div>
           </div>
+          </>
             )
       })}
       </div>
