@@ -187,10 +187,28 @@ input {
 .wishlist .gifts {
   font-size: 1.2rem;
   padding: 5px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 65% 35%;
+      grid-template-columns: 65% 35%;
   /* input[type='checkbox']{
       box-shadow: none;
       color: $main;
     } */
+}
+
+.wishlist .gifts .row-1 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 8fr;
+      grid-template-columns: 1fr 8fr;
+}
+
+.wishlist .gifts .row-2 {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
 
 .wishlist .gifts .checkbox:checked:before {
@@ -283,6 +301,15 @@ input {
 
 .fa-bars:hover {
   background-color: #4758ce;
+}
+
+@media screen and (max-width: 991px) {
+  .wishlist .row-1, .wishlist .row-2 {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 8fr;
+        grid-template-columns: 1fr 8fr;
+  }
 }
 
 @media screen and (max-width: 770px) {

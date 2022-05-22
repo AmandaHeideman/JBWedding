@@ -135,18 +135,26 @@ const WishlistPage = () => {
           console.log(value.link);
           return (
           <div key={key} className="row gifts">
-              <span className="col-1 center">⁘</span>
-              <span className="col-8">{value.title}</span>
-              {value.link ? <span className="col-1"><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
-            {value.nonPurchasable !== true && 
+            <div className="row-1">
+
+              <span className="center">⁘</span>
+              <span>{value.title}</span>
+            </div>
+              {value.title === "Bidrag till bröllopsresa" && <span>Swish: 070-1436088</span>}
+            <div className="row-2">
+              {value.link ? <span><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
+            {value.nonPurchasable !== true ? 
               <>
               {(value.purchased === true && value.boughtBy !== user._id) ? 
               <span className="col-1"> Köpt</span>
               :
-              <input className="col-1 center m-2" type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
-              }
-              </>
+              <input className="center m-2" type="checkbox" value={key} checked={checked[key]} onChange={onCheck}/>
             }
+              </>
+              :
+              <span className="col-1"></span>
+            }
+            </div>
           </div>
           )
         })}
@@ -162,11 +170,13 @@ const WishlistPage = () => {
         return (
         
           <div key={key} className="row gifts">
-            
-            <span className="col-1 center">⁘</span>
-            <span className="col-9">{value.title} </span>
+            <div className="row-1">
+            <span className="center">⁘</span>
+            <span>{value.title} </span>
+          </div>
+          <div className="row-2">
             {value.link ? <span className="col-1"><a href={value.link}>Länk</a></span> : <span className="col-1"></span>}
-            
+            </div>
           </div>
             )
       })}
