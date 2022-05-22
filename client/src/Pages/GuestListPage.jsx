@@ -4,19 +4,45 @@ import FetchUser from "../components/FetchUser";
 const GuestListPage = () => {
   const [users, setUsers] = useState();
   const [role, setRole] = useState();
+  const [filter, setFilter] = useState();
+  const [filteredUsers, setFilteredUsers] = useState();
 
   const adminRoles = ["superadmin", "bridalCouple", "mum", "toastmaster"];
   const admin = adminRoles.includes(role);
 
   const token = localStorage.getItem("token");
+  
 
   useEffect(() => {
     if (token) {
-      FetchUser.GetAllUsers().then((res) => setUsers(res.data));
+      FetchUser.GetAllUsers().then((res) => {setUsers(res.data); setFilteredUsers(res.data)});
 
       FetchUser.GetUser().then((res) => setRole(res.data.role));
+      setFilteredUsers(users);
     }
   }, [token]);
+
+  const handleFilter = (e) => {
+    if(e.target.value==="attending"){
+      setFilteredUsers(users.filter((value, index) => value.attending === true));
+    }
+    else if(e.target.value==="diet"){
+      setFilteredUsers(users.filter((value, index) => value.diet !== undefined));
+    }
+    else if(e.target.value==="performing"){
+      setFilteredUsers(users.filter((value, index) => value.performing === true));
+    }
+    else if(e.target.value==="alcohol"){
+      setFilteredUsers(users.filter((value, index) => value.alcohol === true));
+    }
+    else if(e.target.value==="noalcohol"){
+      setFilteredUsers(users.filter((value, index) => value.alcohol === false));
+    }
+    else if(e.target.value==="showAll"){
+      setFilteredUsers(users);
+    }
+  };
+  
 
   return (
     <div>
@@ -25,7 +51,15 @@ const GuestListPage = () => {
           <h1 className="page-header m-2 center">Gästlista</h1>
           {users ? (
             <div className="styled-div">
-              
+              <select onChange={handleFilter}>
+                <option value="showAll">Visa alla</option>
+                <option value="attending">Kommer</option>
+                <option value="alcohol">Alkoholhaltigt</option>
+                <option value="noalcohol">Alkoholfritt</option>
+                <option value="diet">Specialkost</option>
+                <option value="performing">Uppträder</option>
+              </select>
+              <p>{filter}</p>
 
               <table className="table">
                 <thead>
@@ -53,7 +87,7 @@ const GuestListPage = () => {
                 </thead>
                 <tbody>
 
-                  {(users.map((value, index) => {
+                  {(filteredUsers.map((value, index) => {
                     return (
                       <tr key={index}>
                         <th scope="row">{index+1}</th>
