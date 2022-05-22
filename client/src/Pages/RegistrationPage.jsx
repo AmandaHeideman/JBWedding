@@ -76,33 +76,33 @@ const RegistrationPage = () => {
             <>
           <h1 className="page-header center">{fullName}</h1>
             <div className="styled-div">
-                    <h3 className="center">Din registrerade anmälan:</h3>
+              <h3 className="center">Din registrerade anmälan:</h3>
                 
-              <div className="d-flex justify-content-between">
+              <div className="answers">
                 <p>Kommer du på bröllopet? </p>
-                <p className="text-right"> {attending}</p>
+                <p> {attending}</p>
               </div>
               {attending === "Ja" && (
                 <>
                   
-                  <div className="d-flex justify-content-between">
+                  <div className="answers">
                     <p>Vill du ha alkoholfri eller alkoholhaltig dryck? </p>
-                    <p className="text-right"> {alcohol}</p>
+                    <p> {alcohol}</p>
                   </div>
 
-                  <div className="d-flex justify-content-between">
-                    <p>Har du några allergier/matpreferenser? </p>
-                    <p className="text-right"> {diet}</p>
+                  <div className="answers">
+                    <p>Har du några allergier eller matpreferenser? </p>
+                    <p> {diet}</p>
                   </div>
 
-                  <div className="d-flex justify-content-between">
+                  <div className="answers">
                     <p>Vill du göra något uppträdande eller hålla tal under middagen? </p>
-                    <p className="text-right"> {performing}</p>
+                    <p> {performing}</p>
                   </div>
                   {performing === "Ja" && 
-                    <div className="d-flex justify-content-between">
+                    <div className="answers">
                       <p>Email: </p>
-                      <p className="text-right"> {email}</p>
+                      <p> {email}</p>
                     </div>}
                 </>
               )}
