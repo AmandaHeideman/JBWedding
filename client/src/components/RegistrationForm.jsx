@@ -21,7 +21,8 @@ const RegistrationForm = (props) => {
    * Send answers to server
    */
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
+    e.preventDefault();
     url.post(
       "/users/registration",
       {
@@ -39,6 +40,7 @@ const RegistrationForm = (props) => {
       }
     );
     history.push("/registration");
+    return false;
   };
 
   /*
