@@ -80,6 +80,9 @@ const RegistrationForm = (props) => {
       
       <h1 className="page-header center">{name}</h1>
     <div className="styled-div reg-form">
+    <p className="text-muted" style={{fontSize:14}}>Safari har problem med att spara anmälningar. Ifall du använder Safari, testa att använda en
+        annan browser, eller maila Amanda på heideman.amanda@gmail.com med din anmälan
+      </p>
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label>Kommer du på bröllopet?</label>
