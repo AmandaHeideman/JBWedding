@@ -40,7 +40,6 @@ const RegistrationForm = (props) => {
       }
     );
     history.push("/registration");
-    return false;
   };
 
   /*
